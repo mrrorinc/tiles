@@ -1,0 +1,19 @@
+{
+  "name": "tiles",
+  "version": "0.0.0",
+  "description": "proof of concept prototype",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "reflect@mrror.com",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.8.8",
+    "gulp-clean": "^0.3.1",
+    "gulp-jsdoc": "^0.1.4"
+  }
+}

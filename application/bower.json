@@ -1,0 +1,33 @@
+{
+  "name": "tiles",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mrrorinc/tiles",
+  "authors": [
+    "shinone <reflect@mrror.com>"
+  ],
+  "description": "proof of concept prototype",
+  "main": "main.js",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "Apache 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ui-router": "~0.2.11",
+    "lodash": "~2.4.1",
+    "restangular": "~1.4.0",
+    "angular-strap": "~2.1.1",
+    "angular-sanitize": "~1.3.1",
+    "json-formatter": "~0.2.5",
+    "angular-animate": "~1.3.3",
+    "angular": "~1.3.3",
+    "angular-motion": ">=0.0.0",
+    "angular-dragdrop": "~1.0.11"
+  }
+}
