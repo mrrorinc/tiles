@@ -1,0 +1,14 @@
+.grid-guide {
+  float: left;
+  display: inline-block;
+}
+
+.grid-guide.horizontal {
+  width: 100%;
+  border-bottom: 1px solid #00ff00;
+}
+
+.grid-guide.vertical {
+  height: 4000px;
+  border-right: 1px solid #00ff00;
+}

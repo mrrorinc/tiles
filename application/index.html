@@ -9,12 +9,16 @@
 
   <link rel="stylesheet" href="layout/layout.css" />
 
-  <!-- <link rel="stylesheet" href="components/x.css" /> -->
+  <link rel="stylesheet" href="components/grid-guides/grid-guides-directive.css" />
+  <link rel="stylesheet" href="components/grid-guides/grid-guide-directive.css" />
 </head>
-<body ng-app="application">
+<body ng-app="application" keypress-events>
 
   <div id="main-view" class="main-view" ui-view="main"></div>
-  <div id="grid-container"></div>
+  <tls-grid-guides class="ng-cloak"/>
+
+
+
 
   <!-- jQuery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -47,12 +51,19 @@
   <!-- Bootstrap -->
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
-  <!-- APP -->
+  <!-- Application -->
   <script src="main.js"></script>
   <script src="configuration/main.configuration.js"></script>
 
-  <!--Model-->
-  <!--  <script src="services/x.js"></script>-->
+  <!--Service -->
+  <script src="service/grid-service.js"></script>
+
+  <!--Global -->
+  <script src="components/global/keypress-events-directive.js"></script>
+
+  <!--Grid Guides -->
+  <script src="components/grid-guides/grid-guides-directive.js"></script>
+  <script src="components/grid-guides/grid-guide-directive.js"></script>
 
 </body>
 </html>
