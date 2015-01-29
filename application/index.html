@@ -3,18 +3,22 @@
 <head>
   <title>tiles prototype</title>
 
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css" />
-  <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+  <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css"/>
 
-  <link rel="stylesheet" href="layout/layout.css" />
+  <link rel="stylesheet" href="layout/layout.css"/>
 
-  <link rel="stylesheet" href="components/grid-guides/grid-guides-directive.css" />
-  <link rel="stylesheet" href="components/grid-guides/grid-guide-directive.css" />
+  <link rel="stylesheet" href="components/grid-guides/grid-guides-directive.css"/>
+  <link rel="stylesheet" href="components/grid-guides/grid-guide-directive.css"/>
+
+  <link rel="stylesheet" href="module/stream/stream.css"/>
+  <link rel="stylesheet" href="module/stream/stream-slider-directive.css"/>
+  <link rel="stylesheet" href="module/stream/tile-directive.css"/>
 </head>
 <body ng-app="application" keypress-events>
 
-  <div id="main-view" class="main-view" ui-view="main"></div>
+  <div class="main-view" ui-view="main"></div>
   <tls-grid-guides class="ng-cloak"/>
 
 
@@ -57,6 +61,8 @@
 
   <!--Service -->
   <script src="service/grid-service.js"></script>
+  <script src="service/mock-api-service.js"></script>
+  <script src="service/stream-service.js"></script>
 
   <!--Global -->
   <script src="components/global/keypress-events-directive.js"></script>
@@ -64,6 +70,12 @@
   <!--Grid Guides -->
   <script src="components/grid-guides/grid-guides-directive.js"></script>
   <script src="components/grid-guides/grid-guide-directive.js"></script>
+
+  <!--Stream Module -->
+  <script src="module/stream/stream.js"></script>
+  <script src="module/stream/stream-controller.js"></script>
+  <script src="module/stream/stream-slider-directive.js"></script>
+  <script src="module/stream/tile-directive.js"></script>
 
 </body>
 </html>

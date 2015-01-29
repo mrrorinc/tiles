@@ -32,15 +32,22 @@ application.service('GridService', ['configuration', '$window', '$log', function
     this.currentOffset =  (this.currentTileSize * this.currentColumnsSuggested) - this.currentWidth;
     this.currentMargin = - Math.floor(this.currentOffset / 2);
     
-    $log.log("this.currentColumnsSuggested " + this.currentColumnsSuggested);
-    $log.log("this.currentTileSize " + this.currentTileSize);
-    $log.log("this.currentOffset " + this.currentOffset);
+    // $log.log("this.currentColumnsSuggested " + this.currentColumnsSuggested);
+    // $log.log("this.currentTileSize " + this.currentTileSize);
+    // $log.log("this.currentOffset " + this.currentOffset);
     
     this.renderGuides();
   };
   
   this.getGuides = function() {
+    if (!this.guides) {
+      this.calculateGrid();
+    }
     return this.guides;
+  }
+  
+  this.getTileSize = function() {
+    return this.currentTileSize;
   }
   
   this.renderGuides = function() {

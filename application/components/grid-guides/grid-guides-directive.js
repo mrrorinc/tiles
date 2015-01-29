@@ -19,17 +19,20 @@ application.directive('tlsGridGuides', ['GridService', function (GridService) {
       scope.$on('keypress:71', function(onEvent, keypressEvent) {
         scope.$apply(function (){
           scope.guidesShown = !scope.guidesShown;
+          if (scope.guidesShown)
+          {
+            GridService.calculateGrid();
+          }
         })
       });
                             
-      scope.guides = GridService.guides;
       scope.guidesShown = false;
+      
+      element.ready(function() {
+        scope.guides = GridService.getGuides();
+      });
      },
     controller :function ($scope, GridService, $timeout, configuration) {
-      GridService.calculateGrid();
-      $scope.resizeTimeout = $timeout(function() {
-        GridService.calculateGrid();
-      }, configuration.WINDOW_INITIAL_DELAY);
     }
   }
 }]);

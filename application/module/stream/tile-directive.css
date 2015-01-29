@@ -1,0 +1,15 @@
+.tile-wrapper {
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  overflow: hidden;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+tls-tile {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
