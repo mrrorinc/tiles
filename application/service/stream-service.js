@@ -4,9 +4,10 @@ application.service('StreamService', ['configuration', 'MockAPIService', 'GridSe
   this.positionGrid = [];
   this.positionX = 0;
   this.positionY = 0;
-  this.currentStream = MockAPIService.generateMockStream();
+  this.currentStream = MockAPIService.generateMockContentStream();
   this.remainingStream = angular.copy(this.currentStream);
   this.streamRendered = [];
+  this.shuffleBuffer = [];
   var _this = this;
   
   this.getStream = function() {
@@ -14,8 +15,11 @@ application.service('StreamService', ['configuration', 'MockAPIService', 'GridSe
   }
   
   this.pickStream = function() {
-    var tilePicked = this.sizeAndPosition(this.remainingStream.pop());
-    console.log("leng " + this.positionGrid.length);
+    while ((this.shuffleBuffer.length < configuration.SHUFFLE_BUFFER_LENGTH) && this.remainingStream.length) {
+      this.shuffleBuffer.push(this.remainingStream.pop());
+      this.shuffleBuffer = _.shuffle(this.shuffleBuffer);
+    }
+    var tilePicked = this.sizeAndPosition(this.shuffleBuffer.pop());
     return tilePicked;
   }
   

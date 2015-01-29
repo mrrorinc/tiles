@@ -1,11 +1,36 @@
 .tile-wrapper {
-  float: left;
-  text-align: center;
+  vertical-align: bottom;
+  text-align: left;
   font-size: 14px;
   overflow: hidden;
   position: absolute;
   margin: 0;
-  padding: 0;
+  display: block;
+}
+
+.tile-text {
+  position: absolute;
+  display: block;
+}
+
+.tile-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover; 
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover; 
+}
+
+.tile-image-loader {
+  display: none;
+  position: absolute;
 }
 
 tls-tile {

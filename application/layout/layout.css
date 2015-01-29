@@ -1,5 +1,6 @@
 body {
   overflow: hidden;
+  font-family: Helvetie Neue, Helvetica, Arial;
 }
 
 .main-view, tls-grid-guides {
