@@ -18,6 +18,8 @@ application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$time
       updateStreamContainer = function() {
         $('.stream-container').css('width', GridService.currentTileSize * GridService.currentColumnsSuggested + 1);
         $('.stream-container').css('left', GridService.currentMargin);
+        StreamService.renderStream();
+        // console.log("render stream")
       }
       
       element.ready(function() {

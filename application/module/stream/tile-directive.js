@@ -12,8 +12,8 @@ application.directive('tlsTile', ['GridService', 'configuration', '$timeout', fu
         $(element).children('.tile-wrapper').css('width', GridService.currentTileSize * scope.tile.aWidth);
         $(element).children('.tile-wrapper').css('height', GridService.currentTileSize * scope.tile.aHeight);
         $(element).children('.tile-wrapper').css('line-height', GridService.currentTileSize * scope.tile.aHeight + 'px');
-        $(element).children('.tile-wrapper').css('left', scope.tile.aX + 'px');
-        $(element).children('.tile-wrapper').css('top', scope.tile.aY + 'px');
+        $(element).children('.tile-wrapper').css('left', GridService.currentTileSize * scope.tile.aX + 'px');
+        $(element).children('.tile-wrapper').css('top', GridService.currentTileSize * scope.tile.aY + 'px');
       }
       element.ready(function() {
         scope.resizeTimeout = $timeout(function() {

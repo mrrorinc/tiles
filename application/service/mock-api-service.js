@@ -9,7 +9,7 @@ application.service('MockAPIService', ['configuration', function (configuration)
     return mockStream;
   }
   
-  this.maximumSpan = 4;
+  this.maximumSpan = 5;
   
   this.generateMockTile = function() {
     var mockTile = {
