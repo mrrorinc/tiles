@@ -8,6 +8,7 @@ application.service('StreamService', ['configuration', 'MockAPIService', 'GridSe
   this.remainingStream = angular.copy(this.currentStream);
   this.streamRendered = [];
   this.shuffleBuffer = [];
+  this.forward = 1;
   var _this = this;
   
   this.getStream = function() {
@@ -66,19 +67,36 @@ application.service('StreamService', ['configuration', 'MockAPIService', 'GridSe
     } else {
       if (this.positionGrid[this.positionY][this.positionX])
       {
-        this.positionX ++;
-        if (this.positionX >= GridService.currentColumnsSuggested)
+        this.positionX = this.positionX + this.forward;
+        if ((this.positionX >= GridService.currentColumnsSuggested) || (this.positionX < 0))
         {
-          this.positionX = 0;
           this.positionY++;
+          this.forward = - this.forward;
+          this.positionX = this.positionX + this.forward;
         }
         return this.sizeAndPosition(tileToSizeAndPosition);
       } else {
-        var span = GridService.currentColumnsSuggested - this.positionX;
-        for (var x = this.positionX; x < GridService.currentColumnsSuggested; x++) {
-          if (this.positionGrid[this.positionY][x]) {
-            span = x - this.positionX;
-            break;
+        var span;
+        if (this.forward > 0)
+        {
+          span = GridService.currentColumnsSuggested - this.positionX;
+        } else {
+          span = this.positionX + 1;
+        }
+        if (this.forward > 0)
+        {
+          for (var x = this.positionX; x < GridService.currentColumnsSuggested; x++) {
+            if (this.positionGrid[this.positionY][x]) {
+              span = x - this.positionX;
+              break;
+            }
+          }
+        } else {
+          for (var x = this.positionX; x >= 0; x--) {
+            if (this.positionGrid[this.positionY][x]) {
+              span = this.positionX - x;
+              break;
+            }
           }
         }
         if (span >= tileToSizeAndPosition.pWidth)
@@ -91,8 +109,15 @@ application.service('StreamService', ['configuration', 'MockAPIService', 'GridSe
           tileToSizeAndPosition.aWidth = span;
           tileToSizeAndPosition.aHeight = Math.max(Math.round((tileToSizeAndPosition.pHeight / tileToSizeAndPosition.pWidth) * span), 1);
         }
-        tileToSizeAndPosition.aX = this.positionX;
-        tileToSizeAndPosition.aY = this.positionY;
+        if (this.forward > 0)
+        {
+          tileToSizeAndPosition.aX = this.positionX;
+          tileToSizeAndPosition.aY = this.positionY;
+        } else {
+          tileToSizeAndPosition.aX = this.positionX - tileToSizeAndPosition.aWidth + 1;
+          tileToSizeAndPosition.aY = this.positionY;
+        }
+        
       
         for (var w = 0; w < tileToSizeAndPosition.aWidth; w++)
         {
@@ -101,16 +126,18 @@ application.service('StreamService', ['configuration', 'MockAPIService', 'GridSe
             if (!this.rowExists(this.positionY + h)) {
               this.createRow();
             }
-            this.positionGrid[this.positionY + h][this.positionX + w] = true;
+            this.positionGrid[this.positionY + h][this.positionX + (w * this.forward)] = true;
           }
         }
     
-        this.positionX += tileToSizeAndPosition.aWidth;
-        if (this.positionX >= GridService.currentColumnsSuggested)
+        this.positionX = this.positionX + (tileToSizeAndPosition.aWidth * this.forward);
+        if ((this.positionX >= GridService.currentColumnsSuggested) || (this.positionX < 0))
         {
-          this.positionX = 0;
           this.positionY++;
+          this.forward = - this.forward;
+          this.positionX = this.positionX + this.forward;
         }
+
         return tileToSizeAndPosition;
       }
     }

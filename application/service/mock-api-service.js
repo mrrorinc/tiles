@@ -10,6 +10,13 @@ application.service('MockAPIService', ['configuration', function (configuration)
       pHeight: 1
     },
     {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://www.nationofchange.org/2014/wp-content/uploads/PitBullBan.jpg',
+      pWidth: 3,
+      pHeight: 2
+    },
+    {
       text: '(c) mrror, inc, Brooklyn, NY',
       background: '#000000',
       color: '#555555',
@@ -18,12 +25,33 @@ application.service('MockAPIService', ['configuration', function (configuration)
       pHeight: 3
     },
     {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://www.dogbreedinfo.com/images24/PitbullDogDogsChevy3YearsOld.jpg',
+      pWidth: 2,
+      pHeight: 2
+    },
+    {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://moderndogmagazine.com/sites/default/files/styles/slidehsow-banner/public/images/articles/top_images/PitBull-hd.jpg?itok=U0Kk3wkD',
+      pWidth: 2,
+      pHeight: 1
+    },
+    {
       text: '(c) mrror, inc, Brooklyn, NY',
       background: '#000000',
       color: '#555555',
       imageURL: 'http://www.supics.com/wp-content/uploads/2012/06/Big-Young-Hot-Japanese-Boobs-Girl.jpg',
       pWidth: 2,
       pHeight: 1
+    },
+    {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://www.321dogs.com/pictures/pit_bull_wallpaper.jpg',
+      pWidth: 3,
+      pHeight: 2
     },
     {
       text: '(c) mrror, inc, Brooklyn, NY',
@@ -58,6 +86,13 @@ application.service('MockAPIService', ['configuration', function (configuration)
       pHeight: 2
     },
     {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://i2.cdn.turner.com/cnnnext/dam/assets/121128094015-mnn-pit-bull-story-top.jpg',
+      pWidth: 4,
+      pHeight: 2
+    },
+    {
       text: '(c) mrror, inc, Brooklyn, NY',
       background: '#000000',
       color: '#555555',
@@ -81,6 +116,13 @@ application.service('MockAPIService', ['configuration', function (configuration)
       pHeight: 1
     },
     {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://www.321dogs.com/pictures/pit_bull_wallpaper_2.jpg',
+      pWidth: 3,
+      pHeight: 2
+    },
+    {
       text: '(c) mrror, inc, Brooklyn, NY',
       background: '#000000',
       color: '#555555',
@@ -89,12 +131,26 @@ application.service('MockAPIService', ['configuration', function (configuration)
       pHeight: 3
     },
     {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://lp1.pinkbike.org/p4pb6395752/p4pb6395752.jpg?__SQUARESPACE_CACHEVERSION=1314815844062',
+      pWidth: 3,
+      pHeight: 2
+    },
+    {
       text: '(c) mrror, inc, Brooklyn, NY',
       background: '#000000',
       color: '#555555',
       imageURL: 'http://image.superstreetonline.com/f/features/modp-0905-2006-mitsubishi-lancer-evolution-mr/17861101/modp-0905-02-o-2006-mitsubishi-lancer-evolution-mr-rear-view.jpg',
       pWidth: 4,
       pHeight: 3
+    },
+    {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://bikereviews.com/wp-content/uploads/2011/01/black-market-40-oz-forks-and-molly-hatchet-handlebar.jpg',
+      pWidth: 3,
+      pHeight: 2
     },
     {
       text: '(c) mrror, inc, Brooklyn, NY',
@@ -107,9 +163,23 @@ application.service('MockAPIService', ['configuration', function (configuration)
     {
       background: '#000000',
       color: '#555555',
+      imageURL: 'http://198.170.237.117/images/products/full/nsf_bg.jpg',
+      pWidth: 2,
+      pHeight: 2
+    },
+    {
+      background: '#000000',
+      color: '#555555',
       imageURL: 'http://huntsmanblog.ru/wp-content/uploads/2014/06/glock_19_gen_4_by_thebadpanda2-d6la2ng.jpg',
       pWidth: 3,
       pHeight: 2
+    },
+    {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://media.chainreactioncycles.com//is/image/ChainReactionCycles/prod58125_IMGSET?wid=500&hei=500',
+      pWidth: 2,
+      pHeight: 1
     },
     {
       text: '(c) mrror, inc, Brooklyn, NY',
@@ -122,8 +192,22 @@ application.service('MockAPIService', ['configuration', function (configuration)
     {
       background: '#000000',
       color: '#555555',
+      imageURL: 'http://www.4downdistribution.com/v3/wp-content/uploads/2014/03/Animal_BMXPlus_Jan14_UPDATED-1.jpg',
+      pWidth: 4,
+      pHeight: 3
+    },
+    {
+      background: '#000000',
+      color: '#555555',
       imageURL: 'http://huntsmanblog.ru/wp-content/uploads/2014/06/glock_19_gen_4_by_thebadpanda2-d6la2ng.jpg',
       pWidth: 3,
+      pHeight: 2
+    },
+    {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://ep1.pinkbike.org/p4pb5366321/p4pb5366321.jpg',
+      pWidth: 4,
       pHeight: 2
     },
     {
@@ -143,9 +227,23 @@ application.service('MockAPIService', ['configuration', function (configuration)
     {
       background: '#000000',
       color: '#555555',
+      imageURL: 'http://mellonbmx.com/wp-content/uploads/2012/07/Mike-Hoder-Bike-Check07.jpg',
+      pWidth: 4,
+      pHeight: 2
+    },
+    {
+      background: '#000000',
+      color: '#555555',
       imageURL: 'http://www.mrstyleking.com/wp-content/uploads/2013/07/hot-asian-girls-women-110.jpg',
       pWidth: 2,
       pHeight: 3
+    },
+    {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://www.conjay.com/2048%20Handgun%2040%20SW,%2010mm,%2010mm%20Magnum,%20400%20Corbon.jpg',
+      pWidth: 4,
+      pHeight: 1
     },
     {
       background: '#000000',
@@ -157,9 +255,23 @@ application.service('MockAPIService', ['configuration', function (configuration)
     {
       background: '#000000',
       color: '#555555',
+      imageURL: 'http://www.handgunsmag.com/files/2014/09/Defensive_Ammo_3_fin.jpg',
+      pWidth: 4,
+      pHeight: 2
+    },
+    {
+      background: '#000000',
+      color: '#555555',
       imageURL: 'https://isaminorthreat.files.wordpress.com/2012/10/hot-asian-girl7.jpg',
       pWidth: 3,
       pHeight: 2
+    },
+    {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://www.knife-planet.com/cold-steel-knives/cold-steel-80pgt-gi-tanto-military-knife-combat.jpg',
+      pWidth: 5,
+      pHeight: 1
     },
     {
       text: 'This is an experimental responsive layout project written in AngularJS and ES5.',
@@ -167,6 +279,13 @@ application.service('MockAPIService', ['configuration', function (configuration)
       color: '#ffffff',
       pWidth: 1,
       pHeight: 2
+    },
+    {
+      background: '#000000',
+      color: '#555555',
+      imageURL: 'http://images.knifecenter.com/thumb/1500x1500/knifecenter/coldsteel/images/39LSFTw.jpg',
+      pWidth: 5,
+      pHeight: 3
     },
     {
       text: '"Assumption is the mother of all fuck-ups." - Steven Seagal',

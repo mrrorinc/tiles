@@ -5,7 +5,7 @@ application.constant('configuration',{
   mobileScreen: false,
   showGrid: true,
   DEFAULT_TILE_SIZE: 144,
-  MOCK_STREAM_LENGTH: 360,
+  MOCK_STREAM_LENGTH: 960,
   RENDER_FORCE_DELAY: 4,
   RENDER_UPDATE_DURATION: 64,
   SHUFFLE_BUFFER_LENGTH: 9,
