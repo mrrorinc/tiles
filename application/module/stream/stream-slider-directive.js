@@ -18,11 +18,13 @@ application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$time
         return StreamService.getStream().length;
       },
       function (newValue) {
+        $('tls-stream-slider').css('height', ($('body')[0].scrollHeight + $window.innerHeight) + 'px');
       });
       
       updateStreamContainer = function() {
         $('.stream-container').css('width', GridService.currentTileSize * GridService.currentColumnsSuggested + 1);
         $('.stream-container').css('left', GridService.currentMargin);
+        $window.scrollTo(0, 0); 
         StreamService.renderStream();
         // console.log("render stream")
       }

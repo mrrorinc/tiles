@@ -89,7 +89,7 @@ application.service('StreamService', ['configuration', 'MockAPIService', 'GridSe
         } else {
           //force shrink
           tileToSizeAndPosition.aWidth = span;
-          tileToSizeAndPosition.aHeight = span;
+          tileToSizeAndPosition.aHeight = Math.max(Math.round((tileToSizeAndPosition.pHeight / tileToSizeAndPosition.pWidth) * span), 1);
         }
         tileToSizeAndPosition.aX = this.positionX;
         tileToSizeAndPosition.aY = this.positionY;

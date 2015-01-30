@@ -52,6 +52,14 @@ application.directive('tlsTile', ['GridService', 'configuration', '$timeout', fu
         scope.resizeTimeout = $timeout(function() {
           updateTileSize();
           $(element).fadeIn(360);
+          $(element).children('.tile-wrapper').css('opacity', 0);
+          if (!configuration.mobileScreen)
+          {
+            $(element).children('.tile-wrapper').css('marginTop', GridService.currentTileSize * 2);
+            $(element).children('.tile-wrapper').animate({ 'marginTop': '0px', 'opacity': 1 }, 360, "easeOutCubic");
+          } else {
+            $(element).children('.tile-wrapper').animate({'opacity': 1 }, 360, "easeOutCubic");
+          }
         }, configuration.RENDER_FORCE_DELAY);
       });
     }

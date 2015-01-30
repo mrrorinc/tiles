@@ -2,6 +2,7 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   font-family: Helvetie Neue, Helvetica, Arial;
+  background-color: #000000;
 }
 
 .main-view, tls-grid-guides {

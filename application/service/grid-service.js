@@ -17,9 +17,12 @@ application.service('GridService', ['configuration', '$window', '$log', function
 
   this.calculateGrid = function() {
     var defaultSize = configuration.DEFAULT_TILE_SIZE;
-    if ($window.innerWidth < 1040)
+    if ($window.innerWidth < 990)
     {
       defaultSize = defaultSize * 2;
+      configuration.mobileScreen = true;
+    } else {
+      configuration.mobileScreen = false;
     }
     this.currentWidth = $window.innerWidth;
     this.currentColumnsSuggestedRaw = this.currentWidth / defaultSize;
