@@ -1,10 +1,12 @@
 .stream-container {
   width: 100%;
-  height: 100%;
   position: absolute;
-  overflow-y: scroll;
-  overflow-x: hidden;
   line-height: 0;
   margin: 0;
   padding: 0;
+}
+
+.stream-container-slider {
+  width: 100%;
+  line-height: 0;
 }

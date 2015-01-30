@@ -1,13 +1,12 @@
 body {
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   font-family: Helvetie Neue, Helvetica, Arial;
 }
 
 .main-view, tls-grid-guides {
   width: 100%;
   height: 100%;
-  position: absolute;
-  overflow: hidden;
 }
 
 tls-grid-guides {

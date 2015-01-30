@@ -1,4 +1,4 @@
-application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$timeout', 'configuration', '$rootScope', function (GridService, StreamService, $timeout, configuration, $rootScope) {
+application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$timeout', 'configuration', '$window', function (GridService, StreamService, $timeout, configuration, $window) {
   return {
     restrict :'E' ,
     scope: {
@@ -13,6 +13,11 @@ application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$time
         if (typeof newValue !== 'undefined') {
           updateStreamContainer();
         }
+      });
+      scope.$watch(function () {
+        return StreamService.getStream().length;
+      },
+      function (newValue) {
       });
       
       updateStreamContainer = function() {

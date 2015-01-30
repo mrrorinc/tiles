@@ -16,8 +16,13 @@ application.service('GridService', ['configuration', '$window', '$log', function
   this.guides = null;
 
   this.calculateGrid = function() {
+    var defaultSize = configuration.DEFAULT_TILE_SIZE;
+    if ($window.innerWidth < 1040)
+    {
+      defaultSize = defaultSize * 2;
+    }
     this.currentWidth = $window.innerWidth;
-    this.currentColumnsSuggestedRaw = this.currentWidth / configuration.DEFAULT_TILE_SIZE;
+    this.currentColumnsSuggestedRaw = this.currentWidth / defaultSize;
     this.currentColumnsSuggestedHigh = Math.ceil(this.currentColumnsSuggestedRaw);
     this.currentColumnsSuggestedLow = Math.floor(this.currentColumnsSuggestedRaw);
     
