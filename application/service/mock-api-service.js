@@ -49,6 +49,13 @@ application.service('MockAPIService', ['configuration', function (configuration)
     {
       background: '#000000',
       color: '#555555',
+      imageURL: 'https://liteweb.ca/images/2014/angular.png',
+      pWidth: 4,
+      pHeight: 2
+    },
+    {
+      background: '#000000',
+      color: '#555555',
       imageURL: 'http://www.321dogs.com/pictures/pit_bull_wallpaper.jpg',
       pWidth: 3,
       pHeight: 2
