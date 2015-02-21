@@ -1,5 +1,4 @@
-stream.controller('streamController' , ['currentStream', 'configuration',
-  function (currentStream, configuration) {
-    this.configuration = configuration;
+stream.controller('streamController' , ['StreamService', 'GridService', 'configuration', '$rootScope', '$state',
+  function (StreamService, GridService, configuration, $rootScope, $state) {
   }
 ]);

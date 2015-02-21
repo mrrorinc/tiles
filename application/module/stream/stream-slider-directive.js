@@ -2,12 +2,13 @@ application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$time
   return {
     restrict :'E' ,
     scope: {
+      stream: '=',
+      tilesize: '='
     },
     templateUrl :'./module/stream/stream-slider-directive.html' ,
     link: function(scope, element, attrs) {
-      scope.stream = StreamService.getStream();
       scope.$watch(function () {
-        return GridService.getTileSize();
+        return scope.tilesize;
       },
       function (newValue) {
         if (typeof newValue !== 'undefined') {
@@ -15,7 +16,7 @@ application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$time
         }
       });
       scope.$watch(function () {
-        return StreamService.getStream().length;
+        return scope.stream.length;
       },
       function (newValue) {
         $('tls-stream-slider').css('height', ($('body')[0].scrollHeight + $window.innerHeight) + 'px');
@@ -25,14 +26,12 @@ application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$time
         $('.stream-container').css('width', GridService.currentTileSize * GridService.currentColumnsSuggested + 1);
         $('.stream-container').css('left', GridService.currentMargin);
         $window.scrollTo(0, 0); 
-        StreamService.renderStream();
-        // console.log("render stream")
       }
       
       element.ready(function() {
-        scope.resizeTimeout = $timeout(function() {
-          updateStreamContainer();
-        }, configuration.RENDER_FORCE_DELAY);
+        // scope.resizeTimeout = $timeout(function() {
+        //   updateStreamContainer();
+        // }, configuration.RENDER_FORCE_DELAY);
       });
     },
     controller :function ($scope) {

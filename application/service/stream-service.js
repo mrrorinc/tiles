@@ -1,18 +1,35 @@
 'use strict';
-application.service('StreamService', ['configuration', 'MockAPIService', 'GridService', '$interval', function (configuration, MockAPIService, GridService, $interval) {
+application.service('StreamService', ['configuration', 'APIService', 'GridService', '$interval', function (configuration, APIService, GridService, $interval) {
   this.renderInterval = null;
   this.positionGrid = [];
   this.positionX = 0;
   this.positionY = 0;
-  this.currentStream = MockAPIService.generateMockContentStream();
-  this.remainingStream = angular.copy(this.currentStream);
+  this.currentStream = [];
+  this.remainingStream = [];
   this.streamRendered = [];
   this.shuffleBuffer = [];
   this.forward = 1;
   var _this = this;
   
   this.getStream = function() {
-    return this.streamRendered;
+    return APIService.getList('/tile').then(
+      function(data) {
+        var counter = 0;
+        var loopLength = data.data.length;
+        while (data.data.length < configuration.MOCK_STREAM_LENGTH) {
+          data.data.push(angular.copy(data.data[counter]));
+          counter++;
+          if (counter >= loopLength)
+          {
+            counter = 0;
+          }
+        }
+        return data;
+      },
+      function() {
+        alert("couldn't load stream");
+      }
+    );
   }
   
   this.pickStream = function() {
@@ -45,9 +62,10 @@ application.service('StreamService', ['configuration', 'MockAPIService', 'GridSe
     this.positionY = 0;
     this.remainingStream = angular.copy(this.currentStream);
     this.renderInterval = $interval(function() {
-      _this.streamRendered.push(_this.pickStream());
-      if (!_this.remainingStream.length)
+      if (_this.remainingStream.length || _this.shuffleBuffer.length)
       {
+        _this.streamRendered.push(_this.pickStream());
+      } else {
         $interval.cancel(_this.renderInterval);
         _this.renderInterval = undefined;
       }

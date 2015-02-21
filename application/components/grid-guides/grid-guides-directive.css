@@ -1,3 +1,11 @@
+.tls-grid-guides {
+  display: block;
+  pointer-events: none;
+  z-index: 1111;
+  position:fixed;
+  top: 0;
+}
+
 .grid-guides-container {
   position: absolute;
   width: 100%;

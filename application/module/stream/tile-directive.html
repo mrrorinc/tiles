@@ -1,6 +1,6 @@
 <div class="tile-wrapper" style="background-color:{{ tile.background }}; left: {{ tile.pX }}px; top: {{ tile.pY }}px; color: {{ tile.color }};" ng-class="'w' + tile.pWidth + ' h' + tile.pHeight">
   <div class="tile-text">
-    {{ tile.text }} 
+    {{ tile.caption }} 
   </div>
   <img class="tile-image-loader" ng-src="{{tile.imageURL}}" image-load="loaded()" ng-if="tile.imageURL"/>
 </div>

@@ -1,0 +1,30 @@
+body {
+  font-family: Helvetie Neue, Helvetica, Arial;
+  background-color: #000000;
+  padding: 0;
+  margin: 0;
+}
+
+.clickable {
+  pointer-events: all;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.clickable:hover {
+  color: #ff9900;
+}
+
+.clickable:active {
+  color: #ffcc00;
+  text-decoration: line-through;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

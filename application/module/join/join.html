@@ -1,0 +1,29 @@
+<div class="join-wrapper">
+  <h1>join the 'tiles prototype' now!</h1>
+  <br/>
+  <br/>
+  <form ng-submit="joinController.submit()">
+    <div class="form-group">
+      <label for="email">e-mail address</label>
+      <input type="email" class="form-control" id="email" placeholder="enter e-mail" ng-model="joinController.joinUser.email" autofocus="true">
+    </div>
+    <div class="form-group">
+      <label for="username">username</label>
+      <input type="text" class="form-control" id="username" placeholder="username" ng-model="joinController.joinUser.username">
+    </div>
+    <div class="form-group">
+      <label for="password">password</label>
+      <input type="password" class="form-control" id="password" placeholder="password" ng-model="joinController.joinUser.password">
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">confirm password</label>
+      <input type="password" class="form-control" id="confirmPassword" placeholder="repeat password" ng-model="joinController.joinUser.passwordConfirmed">
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="joinController.joinUser.agreed"> I agree to the TERMS AND CONDITIONS
+      </label>
+    </div>
+    <button type="submit" class="btn btn-default" ng-class="{'disabled':!joinController.joinUser.agreed}">JOIN</button>
+  </form>
+</div>

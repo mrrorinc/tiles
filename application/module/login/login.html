@@ -1,0 +1,16 @@
+<div class="login-wrapper">
+  <h1>login</h1>
+  <br/>
+  <br/>
+  <form ng-submit="loginController.submit()">
+    <div class="form-group">
+      <label for="emailorusername">e-mail address or username</label>
+      <input type="text" class="form-control" id="emailorusername" placeholder="e-mail or username" ng-model="loginController.loginUser.username" autofocus="true">
+    </div>
+    <div class="form-group">
+      <label for="password">password</label>
+      <input type="password" class="form-control" id="password" placeholder="password" ng-model="loginController.loginUser.password">
+    </div>
+    <button type="submit" class="btn btn-default disabled" ng-class="{'disabled':(loginController.loginUser.password.length < 6) || (loginController.loginUser.username.length < 6)}">LOGIN</button>
+  </form>
+</div>
