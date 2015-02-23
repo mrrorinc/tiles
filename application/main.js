@@ -16,8 +16,7 @@ var application = angular.module('application' , [
   'logout',
   'join',
   'postNew',
-  'admin',
-  'selfStream'
+  'admin'
 ]);
 
 application.config(function (
