@@ -28,10 +28,13 @@ application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$time
         $window.scrollTo(0, 0); 
       }
       
+      scope.adjustPadding = function() {
+        $('tls-stream-slider').css('paddingTop', Math.floor(($window.innerHeight / 100) * 12) + 'px');
+      }
+      
       element.ready(function() {
-        // scope.resizeTimeout = $timeout(function() {
-        //   updateStreamContainer();
-        // }, configuration.RENDER_FORCE_DELAY);
+        angular.element($window).bind('resize', scope.adjustPadding);
+        scope.adjustPadding();
       });
     },
     controller :function ($scope) {

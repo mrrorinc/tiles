@@ -6,6 +6,9 @@
   position: absolute;
   margin: 0;
   display: block;
+  pointer-events: all;
+  cursor: pointer;
+  border: 0px solid #ff9900;
 }
 
 .tile-text {

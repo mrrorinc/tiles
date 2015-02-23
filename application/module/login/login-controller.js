@@ -9,7 +9,7 @@ login.controller('loginController' , [
       APIService.post("/user/login", this.loginUser).then(function(data) {
         if (data.data.success) {
           $rootScope.currentUser = data.data.user;
-          $state.go('home');
+          $state.go(data.data.redirect);
         } else {
           $rootScope.notification = {
             caption: "sorry, username or password incorrect.",

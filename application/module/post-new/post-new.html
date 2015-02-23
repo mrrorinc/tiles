@@ -1,1 +1,36 @@
-POST NEW SHIT
+<div class="post-new-wrapper">
+  <h1>post new tile</h1>
+  <br/>
+  <br/>
+  <form ng-submit="postNewController.submit()">
+    <div class="form-group">
+      <label for="caption">caption</label>
+      <input type="text" class="form-control" id="caption" placeholder="caption" ng-model="postNewController.streamRendered[0].caption">
+    </div>
+    <div class="form-group">
+      <label for="caption">image URL</label>
+      <input type="text" class="form-control" id="imageURL" placeholder="image URL" ng-model="postNewController.streamRendered[0].imageURL">
+    </div>
+    <div class="form-group">
+      <label for="caption">link URL</label>
+      <input type="text" class="form-control" id="linkURL" placeholder="link URL" ng-model="postNewController.streamRendered[0].linkURL">
+    </div>
+    <div class="form-group">
+      <label for="pWidth">tile width</label>
+      <input type="text" class="form-control" id="pWidth" placeholder="tile width" ng-model="postNewController.streamRendered[0].pWidth" ng-change="postNewController.updateStream(postNewController.streamRendered[0])">
+    </div>
+    <div class="form-group">
+      <label for="pWidth">tile height</label>
+      <input type="text" class="form-control" id="pHeight" placeholder="tile height" ng-model="postNewController.streamRendered[0].pHeight" ng-change="postNewController.updateStream(postNewController.streamRendered[0])">
+    </div>
+    <div class="form-group">
+      <label for="background">background color</label>
+      <input type="text" class="form-control" id="background" placeholder="background color" ng-model="postNewController.streamRendered[0].background" ng-change="postNewController.updateStream(postNewController.streamRendered[0])">
+    </div>
+    <div class="form-group">
+      <label for="color">text color</label>
+      <input type="text" class="form-control" id="color" placeholder="text color" ng-model="postNewController.streamRendered[0].color" ng-change="postNewController.updateStream(postNewController.streamRendered[0])">
+    </div>
+    <button type="submit" class="btn btn-default">POST NEW</button>
+  </form>
+</div>

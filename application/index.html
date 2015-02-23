@@ -24,6 +24,10 @@
 
   <link rel="stylesheet" href="module/logout/logout.css"/>
 
+  <link rel="stylesheet" href="module/admin/admin.css"/>
+
+  <link rel="stylesheet" href="module/self-stream/self-stream.css"/>
+
   <link rel="stylesheet" href="module/post-new/post-new.css"/>
 
   <link rel="stylesheet" href="module/stream/stream.css"/>
@@ -37,7 +41,7 @@
   <div>
     <tls-global-navigation class="tls-global-navigation noselect" user="currentUser"/>
   </div>
-  <div class="panel-view" slidable="{animated: 'left',shown: '50%',hidden: '100%',hideOn: ['home','']}">
+  <div class="panel-view" slidable="{animated: 'left',shown: '50%',hidden: '100%',hideOn: ['home','memberStream','selfStream','']}">
     <div ui-view="panel"></div>
   </div>
   <div>
@@ -47,7 +51,7 @@
     <tls-grid-guides class="tls-grid-guides"/>
   </div>
   <div class="debug noselect">
-      <!-- {{ notification }} -->
+      <!-- {{ streamRendered.length }} -->
   </div>
 
 
@@ -124,10 +128,17 @@
   <script src="module/logout/logout.js"></script>
   <script src="module/logout/logout-controller.js"></script>
 
+  <!--Self Module -->
+  <script src="module/self-stream/self-stream.js"></script>
+  <script src="module/self-stream/self-stream-controller.js"></script>
 
   <!--Post New Module -->
   <script src="module/post-new/post-new.js"></script>
   <script src="module/post-new/post-new-controller.js"></script>
+
+  <!--Admin Module -->
+  <script src="module/admin/admin.js"></script>
+  <script src="module/admin/admin-controller.js"></script>
 
 </body>
 </html>

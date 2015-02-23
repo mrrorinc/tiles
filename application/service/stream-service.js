@@ -1,5 +1,14 @@
 'use strict';
-application.service('StreamService', ['configuration', 'APIService', 'GridService', '$interval', function (configuration, APIService, GridService, $interval) {
+application.service('StreamService', [
+  'configuration',
+  'APIService',
+  'GridService',
+  '$interval',
+  function (
+    configuration,
+    APIService,
+    GridService,
+    $interval) {
   this.renderInterval = null;
   this.positionGrid = [];
   this.positionX = 0;
@@ -11,8 +20,11 @@ application.service('StreamService', ['configuration', 'APIService', 'GridServic
   this.forward = 1;
   var _this = this;
   
-  this.getStream = function() {
-    return APIService.getList('/tile').then(
+  this.getStream = function(streamURL) {
+    this.currentStream = [];
+    this.remainingStream = [];
+    this.streamRendered = [];
+    return APIService.get('/stream' + streamURL).then(
       function(data) {
         var counter = 0;
         var loopLength = data.data.length;
@@ -32,12 +44,32 @@ application.service('StreamService', ['configuration', 'APIService', 'GridServic
     );
   }
   
+  this.getEditedStream = function(newTile) {
+    this.currentStream = [];
+    this.remainingStream = [];
+    this.streamRendered = [];
+    return APIService.get('/stream' + "/home").then(
+      function(data) {
+        var data = {
+          data: [newTile]
+        }
+        return data;
+      },
+      function() {
+        alert("couldn't load stream");
+      }
+    );
+  }
+  
   this.pickStream = function() {
     while ((this.shuffleBuffer.length < configuration.SHUFFLE_BUFFER_LENGTH) && this.remainingStream.length) {
-      this.shuffleBuffer.push(this.remainingStream.pop());
+      this.shuffleBuffer.push(this.remainingStream.shift());
       this.shuffleBuffer = _.shuffle(this.shuffleBuffer);
     }
-    var tilePicked = this.sizeAndPosition(this.shuffleBuffer.pop());
+    var tilePicked = this.shuffleBuffer.pop();
+    if (tilePicked) {
+      tilePicked = this.sizeAndPosition(tilePicked);
+    }
     return tilePicked;
   }
   
@@ -64,7 +96,11 @@ application.service('StreamService', ['configuration', 'APIService', 'GridServic
     this.renderInterval = $interval(function() {
       if (_this.remainingStream.length || _this.shuffleBuffer.length)
       {
-        _this.streamRendered.push(_this.pickStream());
+        var tilePicked = _this.pickStream();
+        if (tilePicked)
+        {
+          _this.streamRendered.push(tilePicked);
+        }
       } else {
         $interval.cancel(_this.renderInterval);
         _this.renderInterval = undefined;

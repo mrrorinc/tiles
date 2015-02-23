@@ -1,4 +1,16 @@
-application.directive('tlsTile', ['GridService', 'configuration', '$timeout', function (GridService, configuration, $timeout) {
+application.directive('tlsTile', [
+  'GridService',
+  'configuration',
+  '$rootScope',
+  '$state',
+  '$timeout',
+  function (
+    GridService,
+    configuration,
+    $rootScope,
+    $state,
+    $timeout
+  ) {
   return {
     restrict :'E' ,
     scope: {
@@ -7,6 +19,23 @@ application.directive('tlsTile', ['GridService', 'configuration', '$timeout', fu
     },
     templateUrl :'./module/stream/tile-directive.html', 
     link: function(scope, element, attrs) {
+      scope.mouseover = function() {
+        $(element).children('.tile-wrapper').css('marginTop', '0px');
+        $(element).children('.tile-wrapper').css('borderBottomWidth', '0px');
+        $(element).children('.tile-wrapper').stop( true, true );
+        $(element).children('.tile-wrapper').animate({ 'marginTop': '-10px', 'borderBottomWidth': '10px'  }, 240, "easeOutCubic");
+      }
+      scope.mouseout = function() {
+        $(element).children('.tile-wrapper').css('marginTop', '-10px');
+        $(element).children('.tile-wrapper').css('borderBottomWidth', '10px');
+        $(element).children('.tile-wrapper').stop( true, true );
+        $(element).children('.tile-wrapper').animate({ 'marginTop': '10px', 'borderBottomWidth': '0px'  }, 360, "easeOutCubic");
+      }
+      scope.click = function() {
+        $rootScope.currentTile = scope.tile;
+        $state.go('viewTile');
+      }
+
       scope.loaded = function() {
         scope.loadedTimeout = $timeout(function() {
           var imageWidth = $(element).children('.tile-wrapper').children('.tile-image-loader').width();

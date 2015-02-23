@@ -1,5 +1,5 @@
 'use strict';
-application.factory('APIService', ['Restangular', '$http', 'configuration', function (Restangular , $http , configuration) {
+application.factory('APIService', ['$http', 'configuration', function ($http , configuration) {
   return {
     get :function (url , guid , property) {
       if (configuration.loadMockData) {
@@ -16,13 +16,6 @@ application.factory('APIService', ['Restangular', '$http', 'configuration', func
           return data;
         })
       }
-    } ,
-    getList :function (url , property) {
-      return $http({ method: 'GET', url: configuration.baseURL + url, withCredentials: true}).then(function (data) {
-        return data;
-      } , function () {
-        return false;
-      })
     } ,
     put :function (url , object) {
       if (configuration.loadMockData) {

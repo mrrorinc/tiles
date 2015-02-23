@@ -23,13 +23,13 @@
     </div>
   </div>
   
-  <div class="navigation-option clickable" ui-sref="join" ng-if="user">
+  <div class="navigation-option clickable" ui-sref="selfStream" ng-if="user ? (user.realm == 'member') : false">
     <div class="navigation-center">
       {{ user.username }}
     </div>
   </div>
 
-  <div class="navigation-option clickable" ui-sref="postNew" ng-if="user">
+  <div class="navigation-option clickable" ui-sref="postNew" ng-if="user ? (user.realm == 'member') : false">
     <div class="navigation-center">
       NEW TILE
     </div>

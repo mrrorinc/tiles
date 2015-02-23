@@ -1,4 +1,4 @@
-<div class="tile-wrapper" style="background-color:{{ tile.background }}; left: {{ tile.pX }}px; top: {{ tile.pY }}px; color: {{ tile.color }};" ng-class="'w' + tile.pWidth + ' h' + tile.pHeight">
+<div class="tile-wrapper" style="background-color:{{ tile.background }}; left: {{ tile.pX }}px; top: {{ tile.pY }}px; color: {{ tile.color }};" ng-class="'w' + tile.pWidth + ' h' + tile.pHeight" ng-mouseover='mouseover()' ng-mouseout='mouseout()' ng-click='click()'>
   <div class="tile-text">
     {{ tile.caption }} 
   </div>
