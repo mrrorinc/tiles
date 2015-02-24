@@ -1,7 +1,7 @@
 'use strict';
 application.factory('APIService', ['$http', 'configuration', function ($http , configuration) {
   return {
-    get :function (url , guid , property) {
+    get :function (url , guid) {
       if (configuration.loadMockData) {
         return new Promise(function() {
           return {};

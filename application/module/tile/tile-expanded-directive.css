@@ -1,0 +1,94 @@
+.tile-wrapper-expanded {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  margin: 0;
+  display: block;
+  pointer-events: all;
+  cursor: pointer;
+  padding-left: 16px;
+}
+
+.tile-text-expanded {
+  display: block;
+  font-size: 24px;
+  padding: 16px 16px 64px 16px;
+}
+
+.tile-footer-stream-link {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tile-footer-expanded {
+  float: bottom;
+  display: block;
+  font-size: 10px;
+  padding: 0px 16px 16px 16px;
+}
+
+.tile-image-loader-expanded {
+  width: 100%;
+  display: none;
+  display: inline-block;
+}
+
+.tile-image-wrapper-expanded {
+  padding-bottom: 24px;
+}
+
+.tile-close-expanded {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 16px;
+  font-weight: bold;
+  background-color: rgba(255, 153, 0, .16);
+  cursor: pointer;
+  display: block;
+}
+
+.tile-link-indicator {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  color: #ff9900;
+  width: 100%;
+  text-align: center;
+  font-size: 360px;
+  pointer-events: none;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: none;  
+  opacity: .64;
+}
+
+.tile-link-indicator.hover {
+  display: block;
+  color: #ff9900;
+}
+
+.tile-link-indicator.active {
+  display: block;
+  color: #ffcc00;
+}
+
+.closehover {
+  background-color: rgba(255, 153, 0, .79);
+  color: #000000;
+}
+
+.closeactive {
+  background-color: #ffcc00;
+  color: #000000;
+}
+
+tls-tile-expanded {
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  pointer-events: all;
+}

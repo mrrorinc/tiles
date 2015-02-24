@@ -18,30 +18,44 @@ application.service('StreamService', [
   this.streamRendered = [];
   this.shuffleBuffer = [];
   this.forward = 1;
+  this.previousURL = "";
+  
   var _this = this;
   
   this.getStream = function(streamURL) {
-    this.currentStream = [];
-    this.remainingStream = [];
-    this.streamRendered = [];
-    return APIService.get('/stream' + streamURL).then(
-      function(data) {
-        var counter = 0;
-        var loopLength = data.data.length;
-        while (data.data.length < configuration.MOCK_STREAM_LENGTH) {
-          data.data.push(angular.copy(data.data[counter]));
-          counter++;
-          if (counter >= loopLength)
-          {
-            counter = 0;
+    if (streamURL != this.previousURL)
+    {
+      this.previousURL = streamURL;
+      this.currentStream = [];
+      this.remainingStream = [];
+      this.streamRendered = [];
+      return APIService.get('/stream' + streamURL).then(
+        function(data) {
+          var counter = 0;
+          var loopLength = data.data.length;
+          while (data.data.length < configuration.MOCK_STREAM_LENGTH) {
+            data.data.push(angular.copy(data.data[counter]));
+            counter++;
+            if (counter >= loopLength)
+            {
+              counter = 0;
+            }
           }
+          return data;
+        },
+        function() {
+          alert("couldn't load stream");
         }
-        return data;
-      },
-      function() {
-        alert("couldn't load stream");
-      }
-    );
+      );
+    } else {
+      return new Promise(function() {
+        return {};
+      });
+    }
+  }
+  
+  this.clearStream = function() {
+    this.previousURL = "";
   }
   
   this.getEditedStream = function(newTile) {
@@ -92,6 +106,7 @@ application.service('StreamService', [
     this.positionGrid = [];
     this.positionX = 0;
     this.positionY = 0;
+    this.forward = 1;
     this.remainingStream = angular.copy(this.currentStream);
     this.renderInterval = $interval(function() {
       if (_this.remainingStream.length || _this.shuffleBuffer.length)
@@ -137,6 +152,7 @@ application.service('StreamService', [
         } else {
           span = this.positionX + 1;
         }
+        
         if (this.forward > 0)
         {
           for (var x = this.positionX; x < GridService.currentColumnsSuggested; x++) {
@@ -153,6 +169,7 @@ application.service('StreamService', [
             }
           }
         }
+        
         if (span >= tileToSizeAndPosition.pWidth)
         {
           //fits

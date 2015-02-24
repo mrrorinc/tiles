@@ -15,6 +15,7 @@ postNew.controller('postNewController' , [
     {
       $state.go("home");
     } else {
+      StreamService.clearStream();
 
       this.updateStream = function(updatedTile) {
         StreamService.currentStream = [updatedTile];
@@ -54,7 +55,6 @@ postNew.controller('postNewController' , [
         color : '#cccccc'
       };
       this.updateStream(this.newTile);
-
     }
   }
 ]);

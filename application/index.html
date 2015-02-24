@@ -31,16 +31,21 @@
   <link rel="stylesheet" href="module/stream/stream.css"/>
   <link rel="stylesheet" href="module/stream/stream-slider-directive.css"/>
   <link rel="stylesheet" href="module/stream/tile-directive.css"/>
+
+  <link rel="stylesheet" href="module/tile/tile.css"/>
+  <link rel="stylesheet" href="module/tile/tile-expanded-directive.css"/>
 </head>
-<body ng-app="application" keypress-events ng-init="streamRendered=[];currentUser=null;notification=null;">
+<body ng-app="application" keypress-events ng-init="streamRendered=[];currentUser=null;notification=null;currentTile={};">
   <div>
     <tls-stream-slider class="tls-stream-slider noselect" stream="streamRendered" tilesize="tilesize"/>
   </div>
   <div>
     <tls-global-navigation class="tls-global-navigation noselect" user="currentUser"/>
   </div>
-  <div class="panel-view" slidable="{animated: 'left',shown: '50%',hidden: '100%',hideOn: ['home','memberStream','selfStream','']}">
-    <div ui-view="panel"></div>
+  <div class="panel-view-wrapper" slidable="{animated: 'left',shown: '50%',hidden: '100%',hideOn: ['home','memberStream','selfStream','']}">
+    <div class="panel-view">
+      <div ui-view="panel"></div>
+    </div>
   </div>
   <div>
     <tls-notification class="tls-notification noselect" notification="notification"/>
@@ -49,7 +54,7 @@
     <tls-grid-guides class="tls-grid-guides"/>
   </div>
   <div class="debug noselect">
-      <!-- {{ streamRendered.length }} -->
+      <!-- {{ previousState }} -->
   </div>
 
 
@@ -113,6 +118,11 @@
   <script src="module/stream/stream-controller.js"></script>
   <script src="module/stream/stream-slider-directive.js"></script>
   <script src="module/stream/tile-directive.js"></script>
+
+  <!--Tile Module -->
+  <script src="module/tile/tile.js"></script>
+  <script src="module/tile/tile-controller.js"></script>
+  <script src="module/tile/tile-expanded-directive.js"></script>
 
   <!--Join Module -->
   <script src="module/join/join.js"></script>

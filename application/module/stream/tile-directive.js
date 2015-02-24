@@ -3,12 +3,14 @@ application.directive('tlsTile', [
   'configuration',
   '$rootScope',
   '$state',
+  '$stateParams',
   '$timeout',
   function (
     GridService,
     configuration,
     $rootScope,
     $state,
+    $stateParams,
     $timeout
   ) {
   return {
@@ -20,20 +22,21 @@ application.directive('tlsTile', [
     templateUrl :'./module/stream/tile-directive.html', 
     link: function(scope, element, attrs) {
       scope.mouseover = function() {
-        $(element).children('.tile-wrapper').css('marginTop', '0px');
-        $(element).children('.tile-wrapper').css('borderBottomWidth', '0px');
         $(element).children('.tile-wrapper').stop( true, true );
-        $(element).children('.tile-wrapper').animate({ 'marginTop': '-10px', 'borderBottomWidth': '10px'  }, 240, "easeOutCubic");
+        $(element).children('.tile-wrapper').animate({ 'borderBottomWidth': '16px', 'marginTop': '-16px'  }, 240, "easeOutCubic");
       }
       scope.mouseout = function() {
-        $(element).children('.tile-wrapper').css('marginTop', '-10px');
-        $(element).children('.tile-wrapper').css('borderBottomWidth', '10px');
         $(element).children('.tile-wrapper').stop( true, true );
-        $(element).children('.tile-wrapper').animate({ 'marginTop': '10px', 'borderBottomWidth': '0px'  }, 360, "easeOutCubic");
+        $(element).children('.tile-wrapper').animate({ 'borderBottomWidth': '0px', 'marginTop': '0px'  }, 360, "easeOutCubic");
       }
       scope.click = function() {
         $rootScope.currentTile = scope.tile;
-        $state.go('viewTile');
+        if ($state.current.name != "viewTile")
+        {
+          $rootScope.previousState = $state.current.name;
+          $rootScope.previousStateParams = angular.copy($stateParams);
+          $state.go('viewTile', { tileID: scope.tile._id });
+        }
       }
 
       scope.loaded = function() {

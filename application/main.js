@@ -12,6 +12,7 @@ var application = angular.module('application' , [
   'ngAnimate',
   'mgcrea.ngStrap',
   'stream',
+  'tile',
   'login',
   'logout',
   'join',
@@ -62,5 +63,5 @@ application.run(function(
     $rootScope.currentUser = data.data;
   }, function(error) {
       alert("ERROR " + error);
-    })
+  });
 });

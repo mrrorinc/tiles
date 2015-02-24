@@ -1,6 +1,6 @@
 body {
   font-family: Helvetie Neue, Helvetica, Arial;
-  background-color: #000000;
+  background-color: #111111;
   padding: 0;
   margin: 0;
 }
@@ -11,13 +11,18 @@ body {
   color: #ffffff;
 }
 
+.clickable-padded {
+  padding: 9px 4px 9px 4px;
+}
+
 .clickable:hover {
-  color: #ff9900;
+  color: #000000;
+  background-color: #ff9900;
 }
 
 .clickable:active {
-  color: #ffcc00;
-  text-decoration: line-through;
+  color: #000000;
+  background-color: #ffcc00;
 }
 
 .noselect {
