@@ -6,6 +6,7 @@ application.constant('configuration',{
   loadLocalData: false,
   mobileScreen: false,
   showGrid: true,
+  
   DEFAULT_TILE_SIZE: 144,
   MOCK_STREAM_LENGTH: 1,
   RENDER_FORCE_DELAY: 4,

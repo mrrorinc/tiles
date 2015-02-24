@@ -105,19 +105,17 @@ application.directive('tlsTileExpanded', [
         }, configuration.RENDER_FORCE_DELAY);
       };
       $(element).hide();
-      updateTileSize = function() {
-      }
       element.ready(function() {
         scope.resizeTimeout = $timeout(function() {
-          updateTileSize();
           $(element).fadeIn(360);
-          $(element).children('.tile-wrapper-expanded').css('opacity', 0);
+          var tileWrapper = $(element).children('.tile-wrapper-expanded');
+          tileWrapper.css('opacity', 0);
           if (!configuration.mobileScreen)
           {
-            $(element).children('.tile-wrapper-expanded').css('marginLeft', GridService.currentTileSize * 2);
-            $(element).children('.tile-wrapper-expanded').animate({ 'marginLeft': '0px', 'opacity': 1 }, 360, "easeOutCubic");
+            tileWrapper.css('marginLeft', GridService.currentTileSize * 2);
+            tileWrapper.animate({ 'marginLeft': '0px', 'opacity': 1 }, 360, "easeOutCubic");
           } else {
-            $(element).children('.tile-wrapper-expanded').animate({'opacity': 1 }, 360, "easeOutCubic");
+            tileWrapper.animate({'opacity': 1 }, 360, "easeOutCubic");
           }
         }, configuration.RENDER_FORCE_DELAY);
       });

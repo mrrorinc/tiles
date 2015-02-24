@@ -1,11 +1,15 @@
-join.controller('joinController' , [
+join.controller('joinController', [
   'APIService',
   '$state',
   '$rootScope',
-  function (APIService, $state, $rootScope) {
+  function(
+    APIService,
+    $state,
+    $rootScope
+  ) {
     this.submitted = false;
     this.joinUser = {};
-    
+
     this.submit = function() {
       this.submitted = true;
       APIService.post("/user", this.joinUser).then(function(data) {

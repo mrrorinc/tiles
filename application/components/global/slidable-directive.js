@@ -56,7 +56,6 @@ application.directive('slidable', [
             }
           });
         }
-
       }
     };
   }

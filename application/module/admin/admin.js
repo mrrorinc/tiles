@@ -1,10 +1,6 @@
 'use strict';
-/**
- * @module stream
- * */
 var admin = angular.module('admin', []).config(['$stateProvider', function($stateProvider) {
 
-  /** Routes configuration */
   $stateProvider.state('admin', {
     url :'/admin' ,
     views: {

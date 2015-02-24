@@ -22,16 +22,22 @@ application.directive('tlsTile', [
     templateUrl :'./module/stream/tile-directive.html', 
     link: function(scope, element, attrs) {
       scope.mouseover = function() {
-        $(element).children('.tile-wrapper').children('.tile-slider').stop( true, true );
-        $(element).children('.tile-wrapper').children('.tile-slider').animate({ 'marginTop': '-16px'  }, 240, "easeOutCubic");
-        $(element).children('.tile-wrapper').children('.tile-indicator').stop( true, true );
-        $(element).children('.tile-wrapper').children('.tile-indicator').animate({ 'left': '0'  }, 360, "easeOutCubic");
+        var tileSlider = $(element).children('.tile-wrapper').children('.tile-slider');
+        var tileIndicator = $(element).children('.tile-wrapper').children('.tile-indicator');
+
+        tileSlider.stop( true, true );
+        tileSlider.animate({ 'marginTop': '-16px'  }, 240, "easeOutCubic");
+        tileIndicator.stop( true, true );
+        tileIndicator.animate({ 'left': '0'  }, 360, "easeOutCubic");
       }
       scope.mouseout = function() {
-        $(element).children('.tile-wrapper').children('.tile-slider').stop( true, true );
-        $(element).children('.tile-wrapper').children('.tile-slider').animate({ 'marginTop': '0px'  }, 360, "easeOutCubic");
-        $(element).children('.tile-wrapper').children('.tile-indicator').stop( true, true );
-        $(element).children('.tile-wrapper').children('.tile-indicator').animate({ 'left': '100%'  }, 240, "easeOutCubic");
+        var tileSlider = $(element).children('.tile-wrapper').children('.tile-slider');
+        var tileIndicator = $(element).children('.tile-wrapper').children('.tile-indicator');
+
+        tileSlider.stop( true, true );
+        tileSlider.animate({ 'marginTop': '0px'  }, 360, "easeOutCubic");
+        tileIndicator.stop( true, true );
+        tileIndicator.animate({ 'left': '100%'  }, 240, "easeOutCubic");
       }
       scope.click = function() {
         $rootScope.currentTile = scope.tile;
@@ -39,16 +45,20 @@ application.directive('tlsTile', [
         {
           $rootScope.previousState = $state.current.name;
           $rootScope.previousStateParams = angular.copy($stateParams);
-          $state.go('viewTile', { tileID: scope.tile._id });
         }
+        $state.go('viewTile', { tileID: scope.tile._id });
       }
 
       scope.loaded = function() {
         scope.loadedTimeout = $timeout(function() {
-          var imageWidth = $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-image-loader').width();
-          var imageHeight = $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-image-loader').height();
-          var tileWidth = $(element).children('.tile-wrapper').children('.tile-slider').width();
-          var tileHeight = $(element).children('.tile-wrapper').children('.tile-slider').height();
+          var tileSlider = $(element).children('.tile-wrapper').children('.tile-slider');
+          var tileImageLoader = $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-image-loader');
+          
+          
+          var imageWidth = tileImageLoader.width();
+          var imageHeight = tileImageLoader.height();
+          var tileWidth = tileSlider.width();
+          var tileHeight = tileSlider.height();
         
           var targetWidth;
           var targetHeight;
@@ -66,35 +76,40 @@ application.directive('tlsTile', [
             offsetX = 0;
             offsetY = Math.floor((tileHeight - targetHeight) / 2);
           }
-          $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-image-loader').css('width', + targetWidth + 'px');
-          $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-image-loader').css('height', + targetHeight + 'px');
-          $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-image-loader').css('left', + offsetX + 'px');
-          $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-image-loader').css('top', + offsetY + 'px');
-          $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-image-loader').fadeIn(320);
+          tileImageLoader.css('width', + targetWidth + 'px');
+          tileImageLoader.css('height', + targetHeight + 'px');
+          tileImageLoader.css('left', + offsetX + 'px');
+          tileImageLoader.css('top', + offsetY + 'px');
+          tileImageLoader.fadeIn(320);
         }, configuration.RENDER_FORCE_DELAY);
       };
       $(element).hide();
-      updateTileSize = function() {
-        $(element).children('.tile-wrapper').css('left', GridService.currentTileSize * scope.tile.aX + 'px');
-        $(element).children('.tile-wrapper').css('top', GridService.currentTileSize * scope.tile.aY + 'px');
-        $(element).children('.tile-wrapper').css('width', GridService.currentTileSize * scope.tile.aWidth);
-        $(element).children('.tile-wrapper').css('height', GridService.currentTileSize * scope.tile.aHeight);
-        $(element).children('.tile-wrapper').children('.tile-slider').css('line-height', Math.floor((GridService.currentTileSize * Math.min(scope.tile.aWidth, scope.tile.aHeight)) / 8) + 'px');
-        $(element).children('.tile-wrapper').children('.tile-slider').css('font-size', Math.floor((GridService.currentTileSize * Math.min(scope.tile.aWidth, scope.tile.aHeight)) / 10) + 'px');
-        $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-text').css('bottom', Math.floor(GridService.currentTileSize / 8) + 'px');
-        $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-text').css('padding', Math.floor(GridService.currentTileSize / 8) + 'px');
+      scope.updateTileSize = function() {
+        var tileWrapper = $(element).children('.tile-wrapper');
+        var tileSlider = $(element).children('.tile-wrapper').children('.tile-slider');
+        var tileText = $(element).children('.tile-wrapper').children('.tile-slider').children('.tile-text');
+
+        tileWrapper.css('left', GridService.currentTileSize * scope.tile.aX + 'px');
+        tileWrapper.css('top', GridService.currentTileSize * scope.tile.aY + 'px');
+        tileWrapper.css('width', GridService.currentTileSize * scope.tile.aWidth);
+        tileWrapper.css('height', GridService.currentTileSize * scope.tile.aHeight);
+        tileSlider.css('line-height', Math.floor((GridService.currentTileSize * Math.min(scope.tile.aWidth, scope.tile.aHeight)) / 8) + 'px');
+        tileSlider.css('font-size', Math.floor((GridService.currentTileSize * Math.min(scope.tile.aWidth, scope.tile.aHeight)) / 10) + 'px');
+        tileText.css('bottom', Math.floor(GridService.currentTileSize / 8) + 'px');
+        tileText.css('padding', Math.floor(GridService.currentTileSize / 8) + 'px');
       }
       element.ready(function() {
         scope.resizeTimeout = $timeout(function() {
-          updateTileSize();
+          scope.updateTileSize();
           $(element).fadeIn(360);
-          $(element).children('.tile-wrapper').children('.tile-slider').css('opacity', 0);
+          var tileSlider = $(element).children('.tile-wrapper').children('.tile-slider');
+          tileSlider.css('opacity', 0);
           if (!configuration.mobileScreen)
           {
-            $(element).children('.tile-wrapper').children('.tile-slider').css('marginTop', GridService.currentTileSize * 2);
-            $(element).children('.tile-wrapper').children('.tile-slider').animate({ 'marginTop': '0px', 'opacity': 1 }, 360, "easeOutCubic");
+            tileSlider.css('marginTop', GridService.currentTileSize * 2);
+            tileSlider.animate({ 'marginTop': '0px', 'opacity': 1 }, 360, "easeOutCubic");
           } else {
-            $(element).children('.tile-wrapper').children('.tile-slider').animate({'opacity': 1 }, 360, "easeOutCubic");
+            tileSlider.animate({'opacity': 1 }, 360, "easeOutCubic");
           }
         }, configuration.RENDER_FORCE_DELAY);
       });

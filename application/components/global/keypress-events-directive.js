@@ -7,7 +7,6 @@ application.directive('keypressEvents', [
       link: function() {
         $document.bind('keypress', function(e) {
           $rootScope.$broadcast('keypress', e);
-          $rootScope.$broadcast('keypress:' + e.which, e);
         });
       }
     };

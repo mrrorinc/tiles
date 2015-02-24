@@ -1,8 +1,12 @@
-logout.controller('logoutController' , [
+logout.controller('logoutController', [
   'APIService',
   '$state',
   '$rootScope',
-  function (APIService, $state, $rootScope) {
+  function(
+    APIService,
+    $state,
+    $rootScope
+  ) {
     this.logoutUser = {};
 
     APIService.post("/user/logout", this.logoutUser).then(function(data) {

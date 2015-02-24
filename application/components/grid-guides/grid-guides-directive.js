@@ -5,6 +5,8 @@ application.directive('tlsGridGuides', ['GridService', function (GridService) {
     },
     templateUrl :'./components/grid-guides/grid-guides-directive.html',
     link: function (scope, element, attrs) {
+      scope.guidesShown = false;
+
       scope.$watch(function () {
         return GridService.getGuides();
       },
@@ -15,7 +17,6 @@ application.directive('tlsGridGuides', ['GridService', function (GridService) {
           $('.grid-guides-container').css('left', GridService.currentMargin);
         }
       });
-      _scope = scope;
       scope.$on('keypress:71', function(onEvent, keypressEvent) {
         scope.$apply(function (){
           scope.guidesShown = !scope.guidesShown;
@@ -26,8 +27,6 @@ application.directive('tlsGridGuides', ['GridService', function (GridService) {
         })
       });
                             
-      scope.guidesShown = false;
-      
       element.ready(function() {
         scope.guides = GridService.getGuides();
       });

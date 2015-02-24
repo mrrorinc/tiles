@@ -1,8 +1,8 @@
-login.controller('loginController' , [
+login.controller('loginController', [
   'APIService',
   '$state',
   '$rootScope',
-  function (APIService, $state, $rootScope) {
+  function(APIService, $state, $rootScope) {
     this.loginUser = {};
 
     this.submit = function() {

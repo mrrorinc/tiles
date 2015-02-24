@@ -85,7 +85,7 @@
   color: #000000;
 }
 
-tls-tile-expanded {
+.tls-tile-expanded {
   display: block;
   margin: 0;
   padding: 0;
