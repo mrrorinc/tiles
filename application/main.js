@@ -31,7 +31,11 @@ application.config(function (
   if (configuration.loadMockData) {
     configuration.baseURL = configuration.mockURL;
   } else {
-    configuration.baseURL = configuration.apiURL;
+    if (configuration.loadLocalData) {
+      configuration.baseURL = configuration.localApiURL;
+    } else {
+      configuration.baseURL = configuration.apiURL;
+    }
   }
 });
 

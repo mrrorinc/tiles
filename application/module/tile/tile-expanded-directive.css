@@ -55,7 +55,8 @@
   color: #ff9900;
   width: 100%;
   text-align: center;
-  font-size: 360px;
+  font-size: 160px;
+  letter-spacing: -80px;
   pointer-events: none;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);

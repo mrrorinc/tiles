@@ -9,7 +9,7 @@
     <span class="tile-footer-stream-link clickable clickable-padded" ng-click="clickStream()">{{ streaminfo.streamName }}</span> -- posted this on {{ tile.created }}
   </div>
   <div class="tile-link-indicator" ng-class="{'hover':linkHover, 'active':linkActive }">
-    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span>
   </div>
   <div class="tile-close-expanded clickable" ng-click="clickClose()" ng-show="hoverover" ng-class="{'closehover':!tile.linkURL,'closeactive':((!tile.linkURL) && down)}" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()">
     CLICK TO CLOSE <span class="glyphicon glyphicon-remove"></span>

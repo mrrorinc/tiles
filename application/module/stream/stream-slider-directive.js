@@ -1,4 +1,18 @@
-application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$timeout', 'configuration', '$window', function (GridService, StreamService, $timeout, configuration, $window) {
+application.directive('tlsStreamSlider', [
+  'GridService',
+  'StreamService',
+  '$timeout',
+  'configuration',
+  '$window',
+  '$rootScope',
+  function (
+    GridService,
+    StreamService,
+    $timeout,
+    configuration,
+    $window,
+    $rootScope
+  ) {
   return {
     restrict :'E' ,
     scope: {
@@ -19,7 +33,10 @@ application.directive('tlsStreamSlider', ['GridService', 'StreamService', '$time
         return scope.stream.length;
       },
       function (newValue) {
-        $('tls-stream-slider').css('height', ($('body')[0].scrollHeight + $window.innerHeight) + 'px');
+        if (newValue < 2)
+        {
+          $window.scrollTo(0, 0);
+        }
       });
       
       updateStreamContainer = function() {

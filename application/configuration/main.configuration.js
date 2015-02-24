@@ -1,7 +1,9 @@
 application.constant('configuration',{
   apiURL: 'https://shrouded-falls-1626.herokuapp.com',
+  localApiURL: 'http://localhost:4444',
   mockURL: 'api-mock',
-  mockAPIEnabled: true,
+  loadMockData: false,
+  loadLocalData: false,
   mobileScreen: false,
   showGrid: true,
   DEFAULT_TILE_SIZE: 144,
