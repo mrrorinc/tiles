@@ -1,4 +1,4 @@
-# tiles
+# tiles web client
 
 The 'tiles' project is a social micro-publishing platform prototype developed in AngularJS and Node.js. A social network for inspirations - 'tiles' allows you to post bite-size content of images, text and link to your feed and share it with your friends. Streams may be shared on their own, or users may follow other publishers and receive an ever-changing stream of social inspiration.
 
