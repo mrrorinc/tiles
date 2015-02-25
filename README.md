@@ -8,7 +8,7 @@ The real purpose of this project is experimental and educational. Goals are
 - to seek, test, discuss and share best practices
 - to provide a real-life like example of Angular and Node based apps
 
-This is the web client implementation for 'tiles' on AngularJS 1.3. The counterpart of the client is the [RESFUL API SERVER](https://github.com/mrrorinc/tiles).
+This is the web client implementation for 'tiles' on AngularJS 1.3. The counterpart of the client is the [RESFUL API SERVER](https://github.com/mrrorinc/tilesnode).
 
 PLEASE KEEP IN MIND THAT THIS PROJECT IS AN EXPERIMENTAL PROTOTYPE, NOT PRODUCTION CODE. FUNCTIONALITY MAY BE INCOMPLETE OR CHANGING.
 
