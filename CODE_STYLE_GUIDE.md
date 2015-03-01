@@ -26,7 +26,7 @@
   
   - return a promise for data calls
   
-  - use a custom prefix for directives
+  - use the custom **tls-** prefix for custom directives
   
   - this project currently prefers function expressions over declarations
   
