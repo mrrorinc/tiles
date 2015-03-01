@@ -4,7 +4,7 @@
     <div class="tile-text">
       {{ tile.caption }} 
     </div>
-    <img class="tile-image-loader" ng-src="{{tile.imageURL}}" image-load="loaded()" ng-if="tile.imageURL"/>
+    <img class="tile-image-loader" ng-src="{{tile.imageURL}}" tls-image-load="loaded()" ng-if="tile.imageURL"/>
   </div>
   <div class="tile-hit-area" ng-mouseover='mouseover()' ng-mouseout='mouseout()' ng-click='click()'></div>
 </div>

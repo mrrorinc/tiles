@@ -35,14 +35,14 @@
   <link rel="stylesheet" href="module/tile/tile.css"/>
   <link rel="stylesheet" href="module/tile/tile-expanded-directive.css"/>
 </head>
-<body ng-app="application" keypress-events ng-init="streamRendered=[];currentUser=null;notification=null;currentTile={};">
+<body ng-app="application" tls-keypress-events ng-init="streamRendered=[];currentUser=null;notification=null;currentTile={};">
   <div>
     <tls-stream-slider class="tls-stream-slider noselect" stream="streamRendered" tilesize="tilesize" autoscroll="true"/>
   </div>
   <div>
     <tls-global-navigation class="tls-global-navigation noselect" user="currentUser"/>
   </div>
-  <div class="panel-view-wrapper" slidable="{animated: 'left',shown: '50%',hidden: '100%',hideOn: ['home','memberStream','selfStream','']}">
+  <div class="panel-view-wrapper" tls-slidable="{animated: 'left',shown: '50%',hidden: '100%',hideOn: ['home','memberStream','selfStream','']}">
     <div class="panel-view">
       <div ui-view="panel"></div>
     </div>

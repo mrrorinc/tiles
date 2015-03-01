@@ -1,13 +1,13 @@
 'use strict';
 angular.module('application')
-.directive('slidable', [
+.directive('tlsSlidable', [
   '$state',
   function($state) {
     return {
       restrict: 'A',
       scope: {
         shown: '=',
-        slideableSettings: '=slidable'
+        slideableSettings: '=tlsSlidable'
       },
       link: function(scope, element, attrs) {
         scope.show = function() {

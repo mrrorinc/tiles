@@ -11,8 +11,6 @@ angular.module('tile')
     $stateParams,
     $rootScope
   ) {
-    tileControllerScope = this;
-
     this.loadStreamInfo = function() {
       APIService.get("/stream-info", $rootScope.currentTile.streamID).then(function(data) {
         $rootScope.tileStreamInfo = data.data;
@@ -23,9 +21,10 @@ angular.module('tile')
 
     this.checkForTile = function() {
       if (!$rootScope.currentTile._id) {
+        APIService.callbackScope['tileController'] = this;
         APIService.get("/tile", $stateParams.tileID).then(function(data) {
           $rootScope.currentTile = data.data;
-          tileControllerScope.loadStreamInfo();
+          APIService.callbackScope['tileController'].loadStreamInfo();
         }, function(error) {
           alert("ERROR " + error);
         });

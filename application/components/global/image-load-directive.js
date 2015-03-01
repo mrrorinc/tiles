@@ -1,10 +1,10 @@
 'use strict';
 angular.module('application')
-.directive('imageLoad', function() {
+.directive('tlsImageLoad', function() {
   return {
     restrict: 'A',
     scope: {
-      loadHandler: '&imageLoad' // 'imgLoad'
+      loadHandler: '&tlsImageLoad' // 'imgLoad'
     },
     link: function(scope, element, attr) {
       element.on('load', scope.loadHandler);

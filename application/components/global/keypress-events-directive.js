@@ -1,6 +1,6 @@
 'use strict';
 angular.module('application')
-.directive('keypressEvents', [
+.directive('tlsKeypressEvents', [
   '$document',
   '$rootScope',
   function($document, $rootScope) {

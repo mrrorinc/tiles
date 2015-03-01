@@ -3,6 +3,7 @@ angular.module('application')
 .factory('APIService', ['$http', 'configuration',
   function($http, configuration) {
     return {
+      callbackScope: [],
       get: function(url, guid) {
         if (configuration.loadMockData) {
           return new Promise(function() {
