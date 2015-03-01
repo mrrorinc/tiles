@@ -4,8 +4,8 @@
 
 -		follow AngularJS formatting guidelines and best practices
 
-(http://google-styleguide.googlecode.com/svn/trunk/angularjs-google-style.html)
-(https://github.com/johnpapa/angularjs-styleguide)
+http://google-styleguide.googlecode.com/svn/trunk/angularjs-google-style.html
+https://github.com/johnpapa/angularjs-styleguide
 
 
 -		use the tls- directive prefix for custom 'tiles' directives
@@ -13,9 +13,9 @@
 
 -		always format HTML, JavaScript and JSON according to standards
 
-(https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml)
-(https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-(https://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml)
+https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
+https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+https://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml
 
 
 -		prefer single quotes in script where possible
