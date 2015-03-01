@@ -1,4 +1,6 @@
-application.directive('slidable', [
+'use strict';
+angular.module('application')
+.directive('slidable', [
   '$state',
   function($state) {
     return {

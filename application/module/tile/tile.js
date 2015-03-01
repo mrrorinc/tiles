@@ -1,5 +1,5 @@
 'use strict';
-var tile = angular.module('tile', []).config(['$stateProvider',
+angular.module('tile', []).config(['$stateProvider',
   function($stateProvider) {
 
     $stateProvider.state('viewTile', {

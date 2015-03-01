@@ -1,5 +1,5 @@
 'use strict';
-var admin = angular.module('admin', []).config(['$stateProvider', function($stateProvider) {
+angular.module('admin', []).config(['$stateProvider', function($stateProvider) {
 
   $stateProvider.state('admin', {
     url :'/admin' ,

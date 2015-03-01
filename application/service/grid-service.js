@@ -1,6 +1,6 @@
 'use strict';
-
-application.service('GridService', ['configuration', '$window', '$log',
+angular.module('application')
+.service('GridService', ['configuration', '$window', '$log',
   function(configuration, $window, $log) {
 
     this.currentWidth = null;

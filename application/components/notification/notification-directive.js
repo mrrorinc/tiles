@@ -1,4 +1,6 @@
-application.directive('tlsNotification', [
+'use strict';
+angular.module('application')
+.directive('tlsNotification', [
   function() {
     return {
       restrict: 'E',

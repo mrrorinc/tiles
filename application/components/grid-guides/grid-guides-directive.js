@@ -1,4 +1,6 @@
-application.directive('tlsGridGuides', ['GridService', function (GridService) {
+'use strict';
+angular.module('application')
+.directive('tlsGridGuides', ['GridService', function (GridService) {
   return {
     restrict :'E' ,
     scope: {

@@ -1,4 +1,6 @@
-login.controller('loginController', [
+'use strict';
+angular.module('login')
+.controller('loginController', [
   'APIService',
   '$state',
   '$rootScope',

@@ -1,9 +1,11 @@
-application.constant('configuration',{
+'use strict';
+angular.module('application')
+.constant('configuration',{
   apiURL: 'https://shrouded-falls-1626.herokuapp.com',
   localApiURL: 'http://localhost:4444',
   mockURL: 'api-mock',
   loadMockData: false,
-  loadLocalData: false,
+  loadLocalData: true,
   mobileScreen: false,
   showGrid: true,
   

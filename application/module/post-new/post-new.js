@@ -1,5 +1,5 @@
 'use strict';
-var postNew = angular.module('postNew', []).config(['$stateProvider',
+angular.module('postNew', []).config(['$stateProvider',
   function($stateProvider) {
 
     $stateProvider.state('postNew', {

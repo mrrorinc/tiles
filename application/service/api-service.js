@@ -1,5 +1,6 @@
 'use strict';
-application.factory('APIService', ['$http', 'configuration',
+angular.module('application')
+.factory('APIService', ['$http', 'configuration',
   function($http, configuration) {
     return {
       get: function(url, guid) {

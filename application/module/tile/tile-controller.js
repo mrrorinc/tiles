@@ -1,4 +1,6 @@
-tile.controller('tileController', [
+'use strict';
+angular.module('tile')
+.controller('tileController', [
   'APIService',
   '$state',
   '$stateParams',

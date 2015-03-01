@@ -1,4 +1,6 @@
-postNew.controller('postNewController', [
+'use strict';
+angular.module('postNew')
+.controller('postNewController', [
   'APIService',
   'GridService',
   'StreamService',

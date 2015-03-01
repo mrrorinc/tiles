@@ -1,4 +1,6 @@
-application.directive('tlsGridGuide', [
+'use strict';
+angular.module('application')
+.directive('tlsGridGuide', [
   function() {
     return {
       restrict: 'E',

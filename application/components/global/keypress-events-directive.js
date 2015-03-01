@@ -1,4 +1,6 @@
-application.directive('keypressEvents', [
+'use strict';
+angular.module('application')
+.directive('keypressEvents', [
   '$document',
   '$rootScope',
   function($document, $rootScope) {

@@ -1,5 +1,5 @@
 'use strict';
-var login = angular.module('login', []).config(['$stateProvider',
+angular.module('login', []).config(['$stateProvider',
   function($stateProvider) {
 
     $stateProvider.state('login', {

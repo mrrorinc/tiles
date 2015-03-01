@@ -1,4 +1,6 @@
-application.directive('tlsStreamSlider', [
+'use strict';
+angular.module('application')
+.directive('tlsStreamSlider', [
   'GridService',
   'StreamService',
   'APIService',

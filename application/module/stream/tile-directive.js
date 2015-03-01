@@ -1,4 +1,6 @@
-application.directive('tlsTile', [
+'use strict';
+angular.module('application')
+.directive('tlsTile', [
   'GridService',
   'configuration',
   '$rootScope',

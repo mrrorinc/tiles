@@ -1,4 +1,6 @@
-application.directive('tlsGlobalNavigation', [
+'use strict';
+angular.module('application')
+.directive('tlsGlobalNavigation', [
   function() {
     return {
       restrict: 'E',

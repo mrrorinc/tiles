@@ -1,4 +1,6 @@
-admin.controller('adminController', [
+'use strict';
+angular.module('admin')
+.controller('adminController', [
   'APIService',
   '$state',
   '$rootScope',

@@ -1,5 +1,5 @@
 'use strict';
-var stream = angular.module('stream', []).config(['$stateProvider',
+angular.module('stream', []).config(['$stateProvider',
   function($stateProvider) {
 
     $stateProvider.state('home', {

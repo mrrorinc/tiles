@@ -1,5 +1,5 @@
 'use strict';
-var join = angular.module('join', []).config(['$stateProvider',
+angular.module('join', []).config(['$stateProvider',
   function($stateProvider) {
 
     $stateProvider.state('join', {

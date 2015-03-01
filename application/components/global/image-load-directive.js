@@ -1,4 +1,6 @@
-application.directive('imageLoad', function() {
+'use strict';
+angular.module('application')
+.directive('imageLoad', function() {
   return {
     restrict: 'A',
     scope: {

@@ -5,7 +5,7 @@
  * @module application
  *
  */
-var application = angular.module('application' , [
+angular.module('application' , [
   'ui.router',
   'restangular',
   'ngSanitize',
@@ -20,7 +20,8 @@ var application = angular.module('application' , [
   'admin'
 ]);
 
-application.config(function (
+angular.module('application')
+.config(function (
   $stateProvider,
   $urlRouterProvider,
   $httpProvider,

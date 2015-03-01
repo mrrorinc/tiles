@@ -1,6 +1,6 @@
 'use strict';
-
-application.service('StreamService', [
+angular.module('application')
+.service('StreamService', [
   'configuration',
   'APIService',
   'GridService',

@@ -1,4 +1,6 @@
-logout.controller('logoutController', [
+'use strict';
+angular.module('logout')
+.controller('logoutController', [
   'APIService',
   '$state',
   '$rootScope',

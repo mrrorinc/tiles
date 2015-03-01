@@ -1,5 +1,5 @@
 'use strict';
-var logout = angular.module('logout', []).config(['$stateProvider',
+angular.module('logout', []).config(['$stateProvider',
   function($stateProvider) {
 
     $stateProvider.state('logout', {

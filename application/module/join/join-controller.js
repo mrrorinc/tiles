@@ -1,4 +1,6 @@
-join.controller('joinController', [
+'use strict';
+angular.module('join')
+.controller('joinController', [
   'APIService',
   '$state',
   '$rootScope',

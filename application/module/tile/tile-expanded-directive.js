@@ -1,4 +1,6 @@
-application.directive('tlsTileExpanded', [
+'use strict';
+angular.module('application')
+.directive('tlsTileExpanded', [
   'GridService',
   'configuration',
   '$rootScope',
