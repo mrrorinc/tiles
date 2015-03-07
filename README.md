@@ -16,6 +16,10 @@ To see 'tiles' in action, play with the
 
 [TILES HOSTED PROTOTYPE](http://development.mrrorinc-tiles.divshot.io/)
 
+To read about the process of developing tiles, architectural concerns or challenges faced and solved please follow
+
+[THE PROJECT JOURNAL](https://medium.com/breaking-tiles)
+
 
 
 
