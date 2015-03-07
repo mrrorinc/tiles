@@ -18,14 +18,11 @@ angular.module('application')
       scope.guidesShown = false;
       scope.guideColor = '#00ff00';
       scope.toggleGuides = function() {
-        scope.$apply(function (){
-          scope.guidesShown = !scope.guidesShown;
-          console.log(scope.guides.horizontalGuides.length);
-          if (scope.guidesShown)
-          {
-            scope.guides = GridService.getGuides();
-          }
-        })
+        scope.guidesShown = !scope.guidesShown;
+        if (scope.guidesShown)
+        {
+          scope.guides = GridService.getGuides();
+        }
       };
       scope.toggleColor = function() {
         if (scope.guideColor == '#00ff00')
@@ -40,7 +37,7 @@ angular.module('application')
         $('.grid-guide.horizontal').css('height', GridService.currentTileSize);
         $('.grid-guide.vertical').css('width', GridService.currentTileSize);
         $('.grid-guides-container').css('left', GridService.currentMargin);
-      }
+      }            
       scope.handleKeyPress = function(keyCode) {
         if (keyCode == 71)
         {
