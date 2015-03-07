@@ -2,13 +2,17 @@
 angular.module('application')
 .directive('tlsKeypressEvents', [
   '$document',
-  '$rootScope',
-  function($document, $rootScope) {
+  function(
+    $document
+  ) {
     return {
       restrict: 'A',
-      link: function() {
-        $document.bind('keypress', function(e) {
-          $rootScope.$broadcast('keypress', e);
+      scope: {
+        tlsKeypressEvents: '&'
+      },
+      link: function(scope, element, attrs) {
+        $document.bind('keypress', function(event) {
+          scope.tlsKeypressEvents({keyCode: event.which});
         });
       }
     };
