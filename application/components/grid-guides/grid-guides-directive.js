@@ -35,6 +35,9 @@ angular.module('application')
         $('.grid-guide').css('borderColor', scope.guideColor);
       }
       scope.adjustGuides = function() {
+        scope.tileSize = GridService.currentTileSize;
+        scope.currentMargin = GridService.currentMargin;
+        
         $('.grid-guide.horizontal').css('height', GridService.currentTileSize);
         $('.grid-guide.vertical').css('width', GridService.currentTileSize);
         $('.grid-guides-container').css('left', GridService.currentMargin);
@@ -55,7 +58,10 @@ angular.module('application')
       },
       function (newValue) {
         if (typeof newValue !== 'undefined') {
-          scope.adjustTimeout = $timeout(scope.adjustGuides, configuration.RENDER_UPDATE_DURATION);      
+          scope.adjustTimeout = $timeout(function() {
+            scope.guides = GridService.getGuides();
+            scope.adjustTimeout = $timeout(scope.adjustGuides, configuration.RENDER_UPDATE_DURATION);      
+          }, configuration.RENDER_UPDATE_DURATION);      
         }
       });
       

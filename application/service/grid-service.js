@@ -58,8 +58,12 @@ angular.module('application')
     }
 
     this.generateGuides = function(guideOrientation) {
+      var total = this.currentColumnsSuggested;
+      if (guideOrientation == 'horizontal') {
+        total = Math.ceil($window.innerHeight / this.currentTileSize);
+      }
       var guidesGenerated = [];
-      for (var i = 0; i < this.currentColumnsSuggested - 1; i++) {
+      for (var i = 0; i < total - 1; i++) {
         guidesGenerated.push({
           orientation: guideOrientation
         });

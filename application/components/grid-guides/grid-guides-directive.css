@@ -14,3 +14,16 @@
   height: 100%;
   overflow: hidden;
 }
+
+.grid-details {
+  color: #000000;
+  display: inline-block;
+  background-color: #00ff00;
+  position: absolute;
+  left: 16px;
+  bottom: 36px;
+  overflow: hidden;
+  padding: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}

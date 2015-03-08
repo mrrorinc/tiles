@@ -2,7 +2,7 @@
   <h1>post new tile</h1>
   <br/>
   <br/>
-  <form ng-submit="postNewController.submit()">
+  <form ng-submit="postNewController.submit()" ng-keypress="$event.stopPropagation()">
     <div class="form-group">
       <label for="caption">caption</label>
       <input type="text" class="form-control" id="caption" placeholder="caption" ng-model="postNewController.streamRendered[0].caption">

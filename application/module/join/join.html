@@ -2,7 +2,7 @@
   <h1>join the 'tiles prototype' now!</h1>
   <br/>
   <br/>
-  <form ng-submit="joinController.submit()">
+  <form ng-submit="joinController.submit()" ng-keypress="$event.stopPropagation()">
     <div class="form-group">
       <label for="email">e-mail address</label>
       <input type="email" class="form-control" id="email" placeholder="enter e-mail" ng-model="joinController.joinUser.email" autofocus="true">

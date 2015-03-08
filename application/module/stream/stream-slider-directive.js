@@ -30,7 +30,6 @@ angular.module('application')
       scope.updateStreamContainer = function() {
         $('.stream-container').css('width', GridService.currentTileSize * GridService.currentColumnsSuggested + 1);
         $('.stream-container').css('left', GridService.currentMargin);
-        console.log("apply margin " + GridService.currentMargin)
         $window.scrollTo(0, 0); 
       }
       
@@ -40,7 +39,15 @@ angular.module('application')
       
       
       scope.$watch(function () {
-        return scope.tilesize;
+        return GridService.currentMargin;
+      },
+      function (newValue) {
+        if (typeof newValue !== 'undefined') {
+          scope.updateStreamContainer();
+        }
+      });
+      scope.$watch(function () {
+        return GridService.currentTileSize;
       },
       function (newValue) {
         if (typeof newValue !== 'undefined') {

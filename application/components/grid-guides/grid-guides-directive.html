@@ -4,3 +4,8 @@
 <div class="grid-guides-container" ng-show="guidesShown">
   <tls-grid-guide ng-repeat="guide in guides.verticalGuides" orientation="guide.orientation"/>
 </div>
+<div class="grid-details" ng-show="guidesShown">
+  TILE SIZE: {{ tileSize }}<br/>
+  {{ guides.verticalGuides.length + 1 }} COLUMNS / {{ guides.horizontalGuides.length + 1 }} ROWS<br/>
+  MARGIN: {{ currentMargin }}
+</div>
