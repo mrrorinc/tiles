@@ -22,6 +22,7 @@ angular.module('application')
     this.shuffleBuffer = [];
     this.forward = 1;
     this.previousURL = "";
+    this.firstLoad = true;
 
     var _this = this;
 
@@ -120,6 +121,42 @@ angular.module('application')
           _this.renderInterval = undefined;
         }
       }, configuration.RENDER_UPDATE_DURATION);
+    }
+    
+    this.routeStream = function(streamURL, params) {
+      var streamRoute = streamURL;
+      if (streamRoute == '/s/:username') {
+        streamRoute = '/' + params.username;
+      } else {
+        if (streamRoute == '/') {
+          streamRoute = '/home';
+        } else {
+          if ((streamRoute != '/self') && (streamRoute != '/post-new')) {
+            streamRoute = '/default';
+          }
+        }
+      }
+      
+      if (this.firstLoad || (streamRoute != '/default'))
+      {
+        if (streamRoute != '/post-new')
+        {
+          if (this.firstLoad)
+          {
+            this.firstLoad = false;
+          }
+          if (streamRoute == '/default')
+          {
+            streamRoute = '/home';
+          }
+        } else {
+          streamRoute = null;
+        } 
+      } else {
+        streamRoute = null;
+      }
+      
+      return streamRoute;
     }
 
     this.sizeAndPosition = function(tileToSizeAndPosition) {

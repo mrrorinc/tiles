@@ -6,9 +6,7 @@ angular.module('stream', []).config(['$stateProvider',
       url: '/',
       views: {
         'panel': {
-          templateUrl: './module/stream/stream.html',
-          controller: 'streamController',
-          controllerAs: 'streamController'
+          templateUrl: './module/stream/stream.html'
         }
       }
     });
@@ -17,9 +15,7 @@ angular.module('stream', []).config(['$stateProvider',
       url: '/self',
       views: {
         'panel': {
-          templateUrl: './module/stream/stream.html',
-          controller: 'streamController',
-          controllerAs: 'streamController'
+          templateUrl: './module/stream/stream.html'
         }
       }
     });
@@ -28,9 +24,7 @@ angular.module('stream', []).config(['$stateProvider',
       url: '/s/:username',
       views: {
         'panel': {
-          templateUrl: './module/stream/stream.html',
-          controller: 'streamController',
-          controllerAs: 'streamController'
+          templateUrl: './module/stream/stream.html'
         }
       }
     });

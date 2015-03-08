@@ -27,11 +27,10 @@ angular.module('application')
     },
     templateUrl :'./module/stream/stream-slider-directive.html' ,
     link: function(scope, element, attrs) {
-      scope.firstLoad = true;
-      
       scope.updateStreamContainer = function() {
         $('.stream-container').css('width', GridService.currentTileSize * GridService.currentColumnsSuggested + 1);
         $('.stream-container').css('left', GridService.currentMargin);
+        console.log("apply margin " + GridService.currentMargin)
         $window.scrollTo(0, 0); 
       }
       
@@ -66,61 +65,14 @@ angular.module('application')
         }
         scope.resizeTimeout = $timeout(function() {
           scope.adjustPadding();
+          scope.updateStreamContainer();
           GridService.calculateGrid();
           StreamService.renderStream();
         }, configuration.WINDOW_RESIZE_DELAY);
       });
       
-      // TODO: refactor logic to stream-service
-      $rootScope.$on('$stateChangeSuccess',
-        function(event, toState, toParams, fromState, fromParams) {
-          var streamRoute = toState.url;
-          if (streamRoute == '/s/:username') {
-            streamRoute = '/' + toParams.username;
-          } else {
-            if (streamRoute == '/') {
-              streamRoute = '/home';
-            } else {
-              if ((streamRoute != '/self') && (streamRoute != '/post-new')) {
-                streamRoute = '/default';
-              }
-            }
-          }
-          if (scope.firstLoad || (streamRoute != '/default'))
-          {
-            if (streamRoute != '/post-new')
-            {
-              if (scope.firstLoad)
-              {
-                if (streamRoute == '/default')
-                {
-                  streamRoute = '/home';
-                }
-                scope.firstLoad = false;
-              }
-              StreamService.getStream(streamRoute).then(function(data) {
-                $rootScope.streamRendered = StreamService.streamRendered;
-                $rootScope.tilesize = GridService.getTileSize();
-
-                StreamService.currentStream = data.data;
-                StreamService.remainingStream = StreamService.currentStream;
-                StreamService.renderStream();
-              }, function(error) {
-                alert("ERROR GETTING STREAM.");
-              });            
-            }
-          }
-        }
-      )      
-      
       element.ready(function() {
         scope.adjustPadding();
-        
-        APIService.get("/user/session").then(function(data) {
-          $rootScope.currentUser = data.data;
-        }, function(error) {
-            alert("ERROR " + error);
-        });        
       });
     },
     controller :function ($scope) {

@@ -21,8 +21,9 @@ angular.module('application')
         scope.guidesShown = !scope.guidesShown;
         if (scope.guidesShown)
         {
-          scope.guides = GridService.getGuides();
+          scope.adjustGuides();
         }
+        scope.$apply();
       };
       scope.toggleColor = function() {
         if (scope.guideColor == '#00ff00')
@@ -50,11 +51,11 @@ angular.module('application')
       }
       
       scope.$watch(function () {
-        return GridService.currentTileSize;
+        return GridService.getGuides();
       },
       function (newValue) {
         if (typeof newValue !== 'undefined') {
-          scope.adjustGuides();
+          scope.adjustTimeout = $timeout(scope.adjustGuides, configuration.RENDER_UPDATE_DURATION);      
         }
       });
       
