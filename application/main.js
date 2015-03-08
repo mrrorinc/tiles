@@ -7,8 +7,6 @@
  */
 angular.module('application' , [
   'ui.router',
-  'restangular',
-  'ngSanitize',
   'ngAnimate',
   'mgcrea.ngStrap',
   'stream',

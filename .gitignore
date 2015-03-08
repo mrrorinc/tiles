@@ -2,3 +2,4 @@ application/bower_components
 .DS_Store
 application/.divshot-cache
 application/divshot.json
+node_modules
