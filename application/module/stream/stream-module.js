@@ -6,7 +6,7 @@ angular.module('stream', []).config(['$stateProvider',
       url: '/',
       views: {
         'panel': {
-          templateUrl: './module/stream/stream.html'
+          templateUrl: 'module/stream/stream.html'
         }
       }
     });
@@ -15,7 +15,7 @@ angular.module('stream', []).config(['$stateProvider',
       url: '/self',
       views: {
         'panel': {
-          templateUrl: './module/stream/stream.html'
+          templateUrl: 'module/stream/stream.html'
         }
       }
     });
@@ -24,7 +24,7 @@ angular.module('stream', []).config(['$stateProvider',
       url: '/s/:username',
       views: {
         'panel': {
-          templateUrl: './module/stream/stream.html'
+          templateUrl: 'module/stream/stream.html'
         }
       }
     });

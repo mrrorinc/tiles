@@ -6,7 +6,7 @@ angular.module('postNew', []).config(['$stateProvider',
       url: '/post-new',
       views: {
         'panel': {
-          templateUrl: './module/post-new/post-new.html',
+          templateUrl: 'module/post-new/post-new.html',
           controller: 'postNewController',
           controllerAs: 'postNewController'
         }

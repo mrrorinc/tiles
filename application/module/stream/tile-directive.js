@@ -21,7 +21,7 @@ angular.module('application')
       tile: "=",
       index: "="
     },
-    templateUrl :'./module/stream/tile-directive.html', 
+    templateUrl :'module/stream/tile-directive.html', 
     link: function(scope, element, attrs) {
       scope.mouseover = function() {
         var tileSlider = $(element).children('.tile-wrapper').children('.tile-slider');

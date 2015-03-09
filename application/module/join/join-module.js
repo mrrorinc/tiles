@@ -6,7 +6,7 @@ angular.module('join', []).config(['$stateProvider',
       url: '/join',
       views: {
         'panel': {
-          templateUrl: './module/join/join.html',
+          templateUrl: 'module/join/join.html',
           controller: 'joinController',
           controllerAs: 'joinController'
         }

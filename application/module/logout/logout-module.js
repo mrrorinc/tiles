@@ -6,7 +6,7 @@ angular.module('logout', []).config(['$stateProvider',
       url: '/logout',
       views: {
         'panel': {
-          templateUrl: './module/logout/logout.html',
+          templateUrl: 'module/logout/logout.html',
           controller: 'logoutController',
           controllerAs: 'logoutController'
         }

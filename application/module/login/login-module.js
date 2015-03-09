@@ -6,7 +6,7 @@ angular.module('login', []).config(['$stateProvider',
       url: '/login',
       views: {
         'panel': {
-          templateUrl: './module/login/login.html',
+          templateUrl: 'module/login/login.html',
           controller: 'loginController',
           controllerAs: 'loginController'
         }

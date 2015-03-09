@@ -7,7 +7,7 @@ angular.module('application')
       scope: {
         user: '='
       },
-      templateUrl: './components/global-navigation/global-navigation-directive.html',
+      templateUrl: 'components/global-navigation/global-navigation-directive.html',
       link: function(scope, element, attrs) {},
       controller: function($scope, $timeout, configuration, $state) {}
     }

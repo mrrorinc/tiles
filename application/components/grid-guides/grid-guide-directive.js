@@ -7,7 +7,7 @@ angular.module('application')
       scope: {
         orientation: "="
       },
-      templateUrl: './components/grid-guides/grid-guide-directive.html',
+      templateUrl: 'components/grid-guides/grid-guide-directive.html',
       controller: function($scope) {}
     }
   }

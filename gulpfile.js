@@ -3,6 +3,9 @@ var gulp = require("gulp"),
   gutil = require("gulp-util"),
   rename = require("gulp-rename"),
   pkg = require("./package.json");
+  
+var templateCache = require('gulp-angular-templatecache');
+var addStream = require('add-stream'); 
 
 var SRC  = "application";
 
@@ -93,12 +96,13 @@ function compileJavaScript() {
   ])
     // .pipe(jshint())
     // .pipe(jshint.reporter(require('jshint-stylish')))
+    .pipe(addStream.obj(prepareTemplates()))
     .pipe(require("gulp-concat")(MAIN_SCRIPT))
-    .pipe(gulp.dest(DIST_JAVASCRIPT));
 }
 
 gulp.task("compile:javascript", ["update"], function() {
-  return compileJavaScript();
+  return compileJavaScript()
+  .pipe(gulp.dest(DIST_JAVASCRIPT));
 });
 
 // Uglify the JS
@@ -108,6 +112,19 @@ gulp.task("dist:javascript", ["update"], function() {
     .pipe(require('gulp-ngmin')()) // ngmin makes angular injection syntax compatible with uglify
     .pipe(require("gulp-uglify")())
     .pipe(gulp.dest(DIST_JAVASCRIPT));
+});
+
+//HTML Templates
+function prepareTemplates() {
+  return gulp
+      .src([
+        'application/*/*/*.html'
+      ])
+      // .pipe($.minifyHtml({empty: true}))
+      .pipe(templateCache());
+}
+
+gulp.task('templatecache', function() {
 });
 
 

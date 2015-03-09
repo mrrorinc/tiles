@@ -24,7 +24,7 @@ angular.module('application')
       streaminfo: "=",
       index: "="
     },
-    templateUrl :'./module/tile/tile-expanded-directive.html', 
+    templateUrl :'module/tile/tile-expanded-directive.html', 
     link: function(scope, element, attrs) {
       scope.hoverover = false; 
       scope.down = false; 

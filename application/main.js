@@ -15,7 +15,8 @@ angular.module('application' , [
   'logout',
   'join',
   'postNew',
-  'admin'
+  'admin',
+  'templates'
 ]);
 
 angular.module('application')
@@ -37,3 +38,8 @@ angular.module('application')
     }
   }
 });
+
+angular.module("templates", [])
+.run(['$templateCache', function($templateCache) {
+  
+}]);

@@ -7,7 +7,7 @@ angular.module('application')
       scope: {
         notification: '='
       },
-      templateUrl: './components/notification/notification-directive.html',
+      templateUrl: 'components/notification/notification-directive.html',
       link: function(scope, element, attrs) {
         scope.$on('keypress:13', function(onEvent, keypressEvent) {
           keypressEvent.stopPropagation();

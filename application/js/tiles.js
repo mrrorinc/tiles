@@ -72424,7 +72424,8 @@ angular.module('application' , [
   'logout',
   'join',
   'postNew',
-  'admin'
+  'admin',
+  'templates'
 ]);
 
 angular.module('application')
@@ -72446,6 +72447,11 @@ angular.module('application')
     }
   }
 });
+
+angular.module("templates", [])
+.run(['$templateCache', function($templateCache) {
+  
+}]);
 'use strict';
 angular.module('application')
 .constant('configuration',{
@@ -72970,7 +72976,7 @@ angular.module('application')
       scope: {
         user: '='
       },
-      templateUrl: './components/global-navigation/global-navigation-directive.html',
+      templateUrl: 'components/global-navigation/global-navigation-directive.html',
       link: function(scope, element, attrs) {},
       controller: function($scope, $timeout, configuration, $state) {}
     }
@@ -72986,7 +72992,7 @@ angular.module('application')
       scope: {
         orientation: "="
       },
-      templateUrl: './components/grid-guides/grid-guide-directive.html',
+      templateUrl: 'components/grid-guides/grid-guide-directive.html',
       controller: function($scope) {}
     }
   }
@@ -73007,7 +73013,7 @@ angular.module('application')
     restrict :'E' ,
     scope: {
     },
-    templateUrl :'./components/grid-guides/grid-guides-directive.html',
+    templateUrl :'components/grid-guides/grid-guides-directive.html',
     link: function (scope, element, attrs) {
       scope.guidesShown = false;
       scope.guideColor = '#00ff00';
@@ -73076,7 +73082,7 @@ angular.module('application')
       scope: {
         notification: '='
       },
-      templateUrl: './components/notification/notification-directive.html',
+      templateUrl: 'components/notification/notification-directive.html',
       link: function(scope, element, attrs) {
         scope.$on('keypress:13', function(onEvent, keypressEvent) {
           keypressEvent.stopPropagation();
@@ -73095,7 +73101,7 @@ angular.module('admin', []).config(['$stateProvider', function($stateProvider) {
     url :'/admin' ,
     views: {
       'panel': {
-        templateUrl: './module/admin/admin.html',
+        templateUrl: 'module/admin/admin.html',
         controller: 'adminController',
         controllerAs: 'adminController'
       }
@@ -73110,7 +73116,7 @@ angular.module('join', []).config(['$stateProvider',
       url: '/join',
       views: {
         'panel': {
-          templateUrl: './module/join/join.html',
+          templateUrl: 'module/join/join.html',
           controller: 'joinController',
           controllerAs: 'joinController'
         }
@@ -73127,7 +73133,7 @@ angular.module('login', []).config(['$stateProvider',
       url: '/login',
       views: {
         'panel': {
-          templateUrl: './module/login/login.html',
+          templateUrl: 'module/login/login.html',
           controller: 'loginController',
           controllerAs: 'loginController'
         }
@@ -73144,7 +73150,7 @@ angular.module('logout', []).config(['$stateProvider',
       url: '/logout',
       views: {
         'panel': {
-          templateUrl: './module/logout/logout.html',
+          templateUrl: 'module/logout/logout.html',
           controller: 'logoutController',
           controllerAs: 'logoutController'
         }
@@ -73161,7 +73167,7 @@ angular.module('postNew', []).config(['$stateProvider',
       url: '/post-new',
       views: {
         'panel': {
-          templateUrl: './module/post-new/post-new.html',
+          templateUrl: 'module/post-new/post-new.html',
           controller: 'postNewController',
           controllerAs: 'postNewController'
         }
@@ -73178,7 +73184,7 @@ angular.module('stream', []).config(['$stateProvider',
       url: '/',
       views: {
         'panel': {
-          templateUrl: './module/stream/stream.html'
+          templateUrl: 'module/stream/stream.html'
         }
       }
     });
@@ -73187,7 +73193,7 @@ angular.module('stream', []).config(['$stateProvider',
       url: '/self',
       views: {
         'panel': {
-          templateUrl: './module/stream/stream.html'
+          templateUrl: 'module/stream/stream.html'
         }
       }
     });
@@ -73196,7 +73202,7 @@ angular.module('stream', []).config(['$stateProvider',
       url: '/s/:username',
       views: {
         'panel': {
-          templateUrl: './module/stream/stream.html'
+          templateUrl: 'module/stream/stream.html'
         }
       }
     });
@@ -73212,7 +73218,7 @@ angular.module('tile', []).config(['$stateProvider',
       url: '/tile/:tileID',
       views: {
         'panel': {
-          templateUrl: './module/tile/tile.html',
+          templateUrl: 'module/tile/tile.html',
           controller: 'tileController',
           controllerAs: 'tileController'
         }
@@ -73498,7 +73504,7 @@ angular.module('application')
       stream: '=',
       tilesize: '='
     },
-    templateUrl :'./module/stream/stream-slider-directive.html' ,
+    templateUrl :'module/stream/stream-slider-directive.html' ,
     link: function(scope, element, attrs) {
       scope.updateStreamContainer = function() {
         $('.stream-container').css('width', GridService.currentTileSize * GridService.currentColumnsSuggested + 1);
@@ -73583,7 +73589,7 @@ angular.module('application')
       tile: "=",
       index: "="
     },
-    templateUrl :'./module/stream/tile-directive.html', 
+    templateUrl :'module/stream/tile-directive.html', 
     link: function(scope, element, attrs) {
       scope.mouseover = function() {
         var tileSlider = $(element).children('.tile-wrapper').children('.tile-slider');
@@ -73708,7 +73714,7 @@ angular.module('application')
       streaminfo: "=",
       index: "="
     },
-    templateUrl :'./module/tile/tile-expanded-directive.html', 
+    templateUrl :'module/tile/tile-expanded-directive.html', 
     link: function(scope, element, attrs) {
       scope.hoverover = false; 
       scope.down = false; 
@@ -73809,3 +73815,18 @@ angular.module('application')
     // controller :function ($scope) {}
   }
 }]);
+
+angular.module("templates").run(["$templateCache", function($templateCache) {$templateCache.put("components/global-navigation/global-navigation-directive.html","<div class=\"navigation-wrapper\">\n  <div class=\"navigation-header clickable\" ui-sref=\"home\">\n    <div class=\"navigation-center\">\n      TILES PROTOTYPE\n    </div>\n  </div>\n\n  <div class=\"navigation-option clickable\" ui-sref=\"login\" ng-if=\"!user\">\n    <div class=\"navigation-center\">\n      login\n    </div>\n  </div>\n    \n  <div class=\"navigation-option clickable\" ui-sref=\"join\" ng-if=\"!user\">\n    <div class=\"navigation-center\">\n      join\n    </div>\n  </div>\n\n  <div class=\"navigation-option clickable\" ui-sref=\"logout\" ng-if=\"user\">\n    <div class=\"navigation-center\">\n      logout\n    </div>\n  </div>\n  \n  <div class=\"navigation-option clickable\" ui-sref=\"selfStream\" ng-if=\"user ? (user.realm == \'member\') : false\">\n    <div class=\"navigation-center\">\n      {{ user.username }}\n    </div>\n  </div>\n\n  <div class=\"navigation-option clickable\" ui-sref=\"postNew\" ng-if=\"user ? (user.realm == \'member\') : false\">\n    <div class=\"navigation-center\">\n      NEW TILE\n    </div>\n  </div>\n</div>");
+$templateCache.put("components/grid-guides/grid-guide-directive.html","<div class=\"grid-guide\" ng-class=\"orientation\">\n  &nbsp;\n</div>");
+$templateCache.put("components/grid-guides/grid-guides-directive.html","<div class=\"grid-guides-container\" ng-show=\"guidesShown\" tls-keypress-events=\"handleKeyPress(keyCode)\">\n  <tls-grid-guide ng-repeat=\"guide in guides.horizontalGuides\" orientation=\"guide.orientation\"/>\n</div>\n<div class=\"grid-guides-container\" ng-show=\"guidesShown\">\n  <tls-grid-guide ng-repeat=\"guide in guides.verticalGuides\" orientation=\"guide.orientation\"/>\n</div>\n<div class=\"grid-details\" ng-show=\"guidesShown\">\n  TILE SIZE: {{ tileSize }}<br/>\n  {{ guides.verticalGuides.length + 1 }} COLUMNS / {{ guides.horizontalGuides.length + 1 }} ROWS<br/>\n  MARGIN: {{ currentMargin }}\n</div>");
+$templateCache.put("components/notification/notification-directive.html","<div class=\"notification-wrapper\" tls-slidable=\"{animated: \'top\',shown: \'108px\',hidden: \'100%\',shownif:true}\" shown=\"notification\" ng-click=\"notification = null;\">\n  <div class=\"notification-center clickable\">\n    {{ notification.caption }}\n  </div>\n</div>");
+$templateCache.put("module/admin/admin.html","<br/>\n<br/>\n<br/>\nADMIN GOES HERE");
+$templateCache.put("module/join/join.html","<div class=\"join-wrapper\">\n  <h1>join the \'tiles prototype\' now!</h1>\n  <br/>\n  <br/>\n  <form ng-submit=\"joinController.submit()\" ng-keypress=\"$event.stopPropagation()\">\n    <div class=\"form-group\">\n      <label for=\"email\">e-mail address</label>\n      <input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"enter e-mail\" ng-model=\"joinController.joinUser.email\" autofocus=\"true\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"username\">username</label>\n      <input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"username\" ng-model=\"joinController.joinUser.username\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"password\">password</label>\n      <input type=\"password\" class=\"form-control\" id=\"password\" placeholder=\"password\" ng-model=\"joinController.joinUser.password\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"confirmPassword\">confirm password</label>\n      <input type=\"password\" class=\"form-control\" id=\"confirmPassword\" placeholder=\"repeat password\" ng-model=\"joinController.joinUser.passwordConfirmed\">\n    </div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" ng-model=\"joinController.joinUser.agreed\"> I agree to the TERMS AND CONDITIONS\n      </label>\n    </div>\n    <button type=\"submit\" class=\"btn btn-default\" ng-class=\"{\'disabled\':!joinController.joinUser.agreed}\">JOIN</button>\n  </form>\n</div>\n");
+$templateCache.put("module/login/login.html","<div class=\"login-wrapper\">\n  <h1>login</h1>\n  <br/>\n  <br/>\n  <form ng-submit=\"loginController.submit()\" ng-keypress=\"$event.stopPropagation()\">\n    <div class=\"form-group\">\n      <label for=\"emailorusername\">e-mail address or username</label>\n      <input type=\"text\" class=\"form-control\" id=\"emailorusername\" placeholder=\"e-mail or username\" ng-model=\"loginController.loginUser.username\" autofocus=\"true\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"password\">password</label>\n      <input type=\"password\" class=\"form-control\" id=\"password\" placeholder=\"password\" ng-model=\"loginController.loginUser.password\">\n    </div>\n    <button type=\"submit\" class=\"btn btn-default disabled\" ng-class=\"{\'disabled\':(loginController.loginUser.password.length < 6) || (loginController.loginUser.username.length < 6)}\">LOGIN</button>\n  </form>\n</div>\n");
+$templateCache.put("module/logout/logout.html","");
+$templateCache.put("module/post-new/post-new.html","<div class=\"post-new-wrapper\">\n  <h1>post new tile</h1>\n  <br/>\n  <br/>\n  <form ng-submit=\"postNewController.submit()\" ng-keypress=\"$event.stopPropagation()\">\n    <div class=\"form-group\">\n      <label for=\"caption\">caption</label>\n      <input type=\"text\" class=\"form-control\" id=\"caption\" placeholder=\"caption\" ng-model=\"postNewController.streamRendered[0].caption\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"caption\">image URL</label>\n      <input type=\"text\" class=\"form-control\" id=\"imageURL\" placeholder=\"image URL\" ng-model=\"postNewController.streamRendered[0].imageURL\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"caption\">link URL</label>\n      <input type=\"text\" class=\"form-control\" id=\"linkURL\" placeholder=\"link URL\" ng-model=\"postNewController.streamRendered[0].linkURL\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"pWidth\">tile width</label>\n      <input type=\"text\" class=\"form-control\" id=\"pWidth\" placeholder=\"tile width\" ng-model=\"postNewController.streamRendered[0].pWidth\" ng-change=\"postNewController.updateStream(postNewController.streamRendered[0])\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"pWidth\">tile height</label>\n      <input type=\"text\" class=\"form-control\" id=\"pHeight\" placeholder=\"tile height\" ng-model=\"postNewController.streamRendered[0].pHeight\" ng-change=\"postNewController.updateStream(postNewController.streamRendered[0])\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"background\">background color</label>\n      <input type=\"text\" class=\"form-control\" id=\"background\" placeholder=\"background color\" ng-model=\"postNewController.streamRendered[0].background\" ng-change=\"postNewController.updateStream(postNewController.streamRendered[0])\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"color\">text color</label>\n      <input type=\"text\" class=\"form-control\" id=\"color\" placeholder=\"text color\" ng-model=\"postNewController.streamRendered[0].color\" ng-change=\"postNewController.updateStream(postNewController.streamRendered[0])\">\n    </div>\n    <button type=\"submit\" class=\"btn btn-default\">POST NEW</button>\n  </form>\n</div>\n");
+$templateCache.put("module/stream/stream-slider-directive.html","<div class=\"stream-container\">\n  <div class=\"stream-container-slider\">\n    <tls-tile ng-repeat=\"tile in stream\" tile=\"tile\" index=\"$index\"/>\n  </div>\n</div>\n");
+$templateCache.put("module/stream/stream.html","STREAM");
+$templateCache.put("module/stream/tile-directive.html","<div class=\"tile-wrapper\" style=\"left: {{ tile.pX }}px; top: {{ tile.pY }}px;\" ng-class=\"\'w\' + tile.pWidth + \' h\' + tile.pHeight\">\n  <div class=\"tile-indicator\"></div>\n  <div class=\"tile-slider\" style=\"background-color:{{ tile.background }}; color: {{ tile.color }};\">\n    <div class=\"tile-text\">\n      {{ tile.caption }} \n    </div>\n    <img class=\"tile-image-loader\" ng-src=\"{{tile.imageURL}}\" tls-image-load=\"loaded()\" ng-if=\"tile.imageURL\"/>\n  </div>\n  <div class=\"tile-hit-area\" ng-mouseover=\'mouseover()\' ng-mouseout=\'mouseout()\' ng-click=\'click()\'></div>\n</div>");
+$templateCache.put("module/tile/tile-expanded-directive.html","<div class=\"tile-wrapper-expanded noselect\">\n  <div class=\"tile-image-wrapper-expanded\" style=\"background-color:{{ tile.background }}; color: {{ tile.color }};\" ng-click=\"click()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\">\n    <img class=\"tile-image-loader-expanded\" ng-src=\"{{tile.imageURL}}\" image-load=\"loaded()\" ng-if=\"tile.imageURL\" ng-click=\"click()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\"/>\n  </div>\n  <div class=\"tile-text-expanded\" ng-if=\"tile.caption\" style=\"background-color:{{ tile.background }}; color: {{ tile.color }};\" ng-click=\"click()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\">\n    {{ tile.caption }} \n  </div>\n  <div class=\"tile-footer-expanded\" style=\"background-color:{{ tile.background }}; color: {{ tile.color }};\">\n    <span class=\"tile-footer-stream-link clickable clickable-padded\" ng-click=\"clickStream()\">{{ streaminfo.streamName }}</span> -- posted this on {{ tile.created }}\n  </div>\n  <div class=\"tile-link-indicator\" ng-class=\"{\'hover\':linkHover, \'active\':linkActive }\">\n    <span class=\"glyphicon glyphicon-chevron-right\"></span><span class=\"glyphicon glyphicon-chevron-right\"></span>\n  </div>\n  <div class=\"tile-close-expanded clickable\" ng-click=\"clickClose()\" ng-show=\"hoverover\" ng-class=\"{\'closehover\':!tile.linkURL,\'closeactive\':((!tile.linkURL) && down)}\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\">\n    CLICK TO CLOSE <span class=\"glyphicon glyphicon-remove\"></span>\n  </div>\n</div>\n");
+$templateCache.put("module/tile/tile.html","<tls-tile-expanded class=\"tls-tile-expanded\" tile=\"currentTile\" streaminfo=\"tileStreamInfo\" previousstate=\"previousState\" previousstateparams=\"previousStateParams\" index=\"1\"/>");}]);

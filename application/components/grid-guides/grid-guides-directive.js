@@ -13,7 +13,7 @@ angular.module('application')
     restrict :'E' ,
     scope: {
     },
-    templateUrl :'./components/grid-guides/grid-guides-directive.html',
+    templateUrl :'components/grid-guides/grid-guides-directive.html',
     link: function (scope, element, attrs) {
       scope.guidesShown = false;
       scope.guideColor = '#00ff00';

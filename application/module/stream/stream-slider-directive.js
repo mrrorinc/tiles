@@ -25,7 +25,7 @@ angular.module('application')
       stream: '=',
       tilesize: '='
     },
-    templateUrl :'./module/stream/stream-slider-directive.html' ,
+    templateUrl :'module/stream/stream-slider-directive.html' ,
     link: function(scope, element, attrs) {
       scope.updateStreamContainer = function() {
         $('.stream-container').css('width', GridService.currentTileSize * GridService.currentColumnsSuggested + 1);

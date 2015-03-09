@@ -6,7 +6,7 @@ angular.module('tile', []).config(['$stateProvider',
       url: '/tile/:tileID',
       views: {
         'panel': {
-          templateUrl: './module/tile/tile.html',
+          templateUrl: 'module/tile/tile.html',
           controller: 'tileController',
           controllerAs: 'tileController'
         }
