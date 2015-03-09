@@ -3,12 +3,9 @@ body {
   overflow-x: hidden;
 }
 
-.stream-view, .tls-global-navigation, .tls-grid-guides, .tls-notification,  {
+.stream-view {
   width: 100%;
   height: 100%;
-}
-
-.stream-view {
   position: absolute;
   top: 0;
 }

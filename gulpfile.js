@@ -25,33 +25,46 @@ var SRC_IMAGES_ALL  = path.join(SRC_IMAGES_BASE, "**", "*");
 var DIST = "application";
 var DIST_LIB = path.join(DIST, "lib");
 var DIST_ALL = path.join(DIST, "**");
-var DIST_LESS = path.join(DIST, "css");
+var DIST_CSS = path.join(DIST, "css");
 var DIST_JAVASCRIPT = path.join(DIST, "js");
 var DIST_IMAGES = path.join(DIST, "img");
 
 var MAIN_SCRIPT = "tiles.js";
+var MAIN_STYLE = "tiles.css";
 
 
 // LESS
 
 // Compile app/less sources in CSS and auto-prefix the CSS
-function compileLess() {
-  return gulp.src(SRC_LESS_ALL)
-    .pipe(require("gulp-less")({ paths: [ path.join(SRC_LESS_BASE, "includes") ] }))
-    .pipe(require("gulp-autoprefixer")("last 2 version", "safari 5", "ie 8", "ie 9", "opera 12.1", "ios 6", "android 4"))
-    .pipe(gulp.dest(DIST_LESS));
+function compileCSS() {
+  return gulp.src([
+    "application/bower_components/angular-motion/dist/angular-motion.css",
+
+    "application/components/**/*.css",
+    "application/layout/**/*.css",
+    "application/module/**/*.css"
+  ])
+    .pipe(require("gulp-concat")(MAIN_STYLE))
+  
+    // .pipe(require("gulp-autoprefixer")("last 2 version", "safari 5", "ie 8", "ie 9", "opera 12.1", "ios 6", "android 4"))
+    .pipe(gulp.dest(DIST_CSS));
 }
 
-gulp.task("compile:less", ["update"], function() {
-  return compileLess();
+gulp.task("compile:css", ["update", "copy-bootstrap"], function() {
+  return compileCSS();
+});
+
+gulp.task("copy-bootstrap", ["update"], function() {
+  return gulp.src("application/bower_components/bootstrap/dist/**")
+    .pipe(gulp.dest("application/css/bootstrap"));
 });
 
 // Minify the CSS
-gulp.task("dist:less", ["update"], function() {
-  return compileLess()
+gulp.task("dist:css", ["update", "copy-bootstrap"], function() {
+  return compileCSS()
     .pipe(rename({ suffix: ".min" }))
     .pipe(require('gulp-minify-css')())
-    .pipe(gulp.dest(DIST_LESS));
+    .pipe(gulp.dest(DIST_CSS));
 });
 
 

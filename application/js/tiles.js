@@ -72453,7 +72453,7 @@ angular.module('application')
   localApiURL: 'http://localhost:4444',
   mockURL: 'api-mock',
   loadMockData: false,
-  loadLocalData: false,
+  loadLocalData: true,
   mobileScreen: false,
   showGrid: true,
   
