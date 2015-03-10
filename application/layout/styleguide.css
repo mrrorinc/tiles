@@ -11,10 +11,6 @@ body {
   color: #ffffff;
 }
 
-.clickable-padded {
-  padding: 9px 4px 9px 4px;
-}
-
 .clickable:hover {
   color: #000000;
   background-color: #ff9900;

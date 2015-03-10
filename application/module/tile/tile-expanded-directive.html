@@ -1,17 +1,36 @@
-<div class="tile-wrapper-expanded noselect">
-  <div class="tile-image-wrapper-expanded" style="background-color:{{ tile.background }}; color: {{ tile.color }};" ng-click="click()" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()">
-    <img class="tile-image-loader-expanded" ng-src="{{tile.imageURL}}" image-load="loaded()" ng-if="tile.imageURL" ng-click="click()" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()"/>
+<div class="tile-info-measure-expanded" style="color: {{ tile.color }};">
+  <div class="tile-info-bottom">
+    <div class="tile-link-indicator" ng-if="tile.linkURL">
+      <span class="glyphicon glyphicon-new-window"></span>
+    </div>
+    <div class="tile-text-expanded" ng-if="tile.caption" >
+      {{ tile.caption }} 
+    </div>
+    <div class="tile-footer-expanded" style="color: {{ tile.color }};">
+      <span class="tile-footer-stream-link clickable">{{ streaminfo.streamName }}</span> -- posted this on {{ tile.created }}
+    </div>
   </div>
-  <div class="tile-text-expanded" ng-if="tile.caption" style="background-color:{{ tile.background }}; color: {{ tile.color }};" ng-click="click()" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()">
-    {{ tile.caption }} 
+</div>
+<div class="tile-background-expanded" style="background-color:{{ tile.background }};" ng-click="clickClose()" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()"></div>
+<div class="tile-slider-expanded">
+  <div class="tile-image-wrapper-expanded noselect" ng-click="clickClose()" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()">
+    <img class="tile-image-loader-expanded" ng-src="{{tile.imageURL}}" tls-image-load="loaded()" ng-if="tile.imageURL" ng-click="clickClose()" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()"/>
   </div>
-  <div class="tile-footer-expanded" style="background-color:{{ tile.background }}; color: {{ tile.color }};">
-    <span class="tile-footer-stream-link clickable clickable-padded" ng-click="clickStream()">{{ streaminfo.streamName }}</span> -- posted this on {{ tile.created }}
+  <div class="tile-info-expanded noselect" style="color: {{ tile.color }};">
+    <div class="tile-clicktrap-expanded"  ng-click="clickClose()" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()"></div>
+    <div class="tile-info-bottom">
+      <div class="tile-link-indicator" ng-if="tile.linkURL" ng-class="{'hover':linkHover, 'active':linkActive }" ng-click="clickLink()" ng-mouseover="linkover()" ng-mouseout="linkout()" ng-mousedown="linkdown()" ng-mouseup="linkup()">
+        <span class="glyphicon glyphicon-new-window"></span>
+      </div>
+      <div class="tile-text-expanded" ng-if="tile.caption" ng-click="clickLink()" ng-class="{'hover':linkHover, 'active':linkActive, 'no-image-text':!tile.imageURL }" ng-mouseover="linkover()" ng-mouseout="linkout()" ng-mousedown="linkdown()" ng-mouseup="linkup()">
+        {{ tile.caption }} 
+      </div>
+      <div class="tile-footer-expanded" style="color: {{ tile.color }};">
+        <span class="tile-footer-stream-link clickable" ng-click="clickStream()">{{ streaminfo.streamName }}</span> -- posted this on {{ tile.created }}
+      </div>
+    </div>
   </div>
-  <div class="tile-link-indicator" ng-class="{'hover':linkHover, 'active':linkActive }">
-    <span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span>
-  </div>
-  <div class="tile-close-expanded clickable" ng-click="clickClose()" ng-show="hoverover" ng-class="{'closehover':!tile.linkURL,'closeactive':((!tile.linkURL) && down)}" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()">
-    CLICK TO CLOSE <span class="glyphicon glyphicon-remove"></span>
-  </div>
+</div>
+<div class="tile-close-expanded clickable" ng-class="{'closeactive': down}" ng-click="clickClose()" ng-mouseover="mouseover()" ng-mouseout="mouseout()" ng-mousedown="mousedown()" ng-mouseup="mouseup()">
+  <span class="glyphicon glyphicon-chevron-right"></span>
 </div>

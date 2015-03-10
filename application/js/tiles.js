@@ -73725,34 +73725,48 @@ angular.module('application')
         return scope.tile;
       },
       function (newValue) {
+        var imageLoader = $(element).children('.tile-image-wrapper-expanded').children('.tile-image-loader-expanded');
+        imageLoader.hide();
       });
       
       scope.mouseover = function() {
         scope.hoverover = true;
+      }
+
+      scope.mouseout = function() {
+        scope.hoverover = false;
+      }
+      
+      scope.mousedown = function() {
+        scope.down = true;
+      }
+
+      scope.mouseup = function() {
+        scope.down = false;
+      }
+
+      scope.linkover = function() {
         if (scope.tile.linkURL)
         {
           scope.linkHover = true; 
         }
       }
 
-      scope.mouseout = function() {
-        scope.hoverover = false;
+      scope.linkout = function() {
         if (scope.tile.linkURL)
         {
           scope.linkHover = false; 
         }
       }
       
-      scope.mousedown = function() {
-        scope.down = true;
+      scope.linkdown = function() {
         if (scope.tile.linkURL)
         {
           scope.linkActive = true; 
         }
       }
 
-      scope.mouseup = function() {
-        scope.down = false;
+      scope.linkup = function() {
         if (scope.tile.linkURL)
         {
           scope.linkActive = false; 
@@ -73760,7 +73774,8 @@ angular.module('application')
       }
       
       
-      scope.click = function() {
+      
+      scope.clickLink = function() {
         if (scope.tile.linkURL)
         {
           $window.open(scope.tile.linkURL);
@@ -73778,10 +73793,6 @@ angular.module('application')
         }
       }
       
-      scope.clickLink = function() {
-        $window.open(scope.tile.linkURL);
-      }
-      
       scope.clickStream = function() {
         $state.go(
           "memberStream",
@@ -73791,14 +73802,98 @@ angular.module('application')
         );
       };
       
+      scope.alignTile = function()
+      {
+        var slider = $(element).children('.tile-slider-expanded');
+        var imageLoader = slider.children('.tile-image-wrapper-expanded').children('.tile-image-loader-expanded');
+        var info = slider.children('.tile-info-expanded');
+        var infoText = $(element).children('.tile-info-measure-expanded').children('.tile-info-bottom').children('.tile-text-expanded');
+        var infoFooter = $(element).children('.tile-info-measure-expanded').children('.tile-info-bottom').children('.tile-footer-expanded');
+        var sourceWidth = imageLoader.width();
+        var sourceHeight = imageLoader.height();
+        var maxWidth = $(element).width();
+        var maxHeight = $(element).height();
+        var targetWidth = 0;
+        var targetHeight = 0;
+        var wider = false;
+        if (scope.tile.imageURL)
+        {
+          if (((sourceWidth / sourceHeight) * maxHeight) > maxWidth)
+          {
+            wider = true;
+            targetWidth = maxWidth;
+            targetHeight = Math.ceil(maxWidth * (sourceHeight / sourceWidth));
+          } else {
+            targetWidth = Math.ceil(maxHeight * (sourceWidth / sourceHeight));
+            targetHeight = maxHeight;
+          }
+          imageLoader.width(targetWidth);
+          imageLoader.height(targetHeight);
+        }
+        var infoRoom = maxWidth - targetWidth;
+        var infoWidth = infoRoom;
+        var infoHeight = maxHeight;
+        var infoLeft = targetWidth;
+        var infoTop = 0;
+        if (wider)
+        {
+          infoRoom = maxHeight - targetHeight;
+          infoWidth = maxWidth;
+          infoHeight = infoRoom;
+          infoLeft = 0;
+          infoTop = targetHeight;
+        }
+          
+        var expectedWidth = Math.ceil((infoText.outerHeight() + infoFooter.outerHeight()) * (maxWidth / maxHeight));
+        var expectedHeight = infoText.outerHeight() + infoFooter.outerHeight();
+        
+        if (infoWidth != Math.max(Math.max(infoWidth, expectedWidth, 192)))
+        {
+          infoWidth = Math.max(Math.max(infoWidth, expectedWidth, 192));
+          slider.css('overflowX', 'scroll');
+        } else {
+          slider.css('overflowX', 'hidden');
+        }
+        if (infoHeight != Math.max(infoHeight, expectedHeight))
+        {
+          infoHeight = Math.max(infoHeight, expectedHeight);
+          slider.css('overflowY', 'scroll');
+        } else {
+          slider.css('overflowY', 'hidden');
+        }
+        
+        info.width(infoWidth);
+        info.height(infoHeight);
+        info.css('left', infoLeft + 'px');
+        info.css('top', infoTop + 'px');
+        
+        $timeout(function() {
+          
+        }, 64);
+      }
+      
       scope.loaded = function() {
         scope.loadedTimeout = $timeout(function() {
-          $(element).children('.tile-wrapper-expanded').children('.tile-image-loader-expanded').fadeIn(320);
+          scope.alignTile();
+          var imageLoader = $(element).children('.tile-slider-expanded').children('.tile-image-wrapper-expanded').children('.tile-image-loader-expanded');
+          imageLoader.fadeIn(320);
         }, configuration.RENDER_FORCE_DELAY);
       };
-      $(element).hide();
-      element.ready(function() {
+
+      angular.element($window).bind('resize',function(){
+        if (scope.resizeTimeout)
+        {
+          $timeout.cancel(scope.resizeTimeout);
+        }
         scope.resizeTimeout = $timeout(function() {
+          scope.alignTile();
+        }, configuration.WINDOW_RESIZE_DELAY);
+      });
+
+      $(element).hide();
+      $(element).ready(function() {
+        scope.resizeTimeout = $timeout(function() {
+          scope.alignTile();
           $(element).fadeIn(360);
           var tileWrapper = $(element).children('.tile-wrapper-expanded');
           tileWrapper.css('opacity', 0);
@@ -73816,8 +73911,7 @@ angular.module('application')
   }
 }]);
 
-angular.module("templates").run(["$templateCache", function($templateCache) {$templateCache.put("components/global/application-ui.html","<div>\n  <tls-stream-slider class=\"tls-stream-slider noselect\" stream=\"streamRendered\" tilesize=\"tilesize\" autoscroll=\"true\" ng-controller=\"streamController as streamController\"/>\n</div>\n<div>\n  <tls-global-navigation class=\"tls-global-navigation noselect\" user=\"currentUser\" ng-keypress=\"keycode = \'test\'\" ng-controller=\"globalNavigationController as globalNavigationController\"/>\n</div>\n<div class=\"panel-view-wrapper\" tls-slidable=\"{animated: \'left\',shown: \'0%\',hidden: \'100%\',hideOn: [\'home\',\'memberStream\',\'selfStream\',\'\']}\">\n  <div class=\"panel-view\">\n    <div ui-view=\"panel\"></div>\n  </div>\n</div>\n<div>\n  <tls-notification class=\"tls-notification noselect\" notification=\"notification\"/>\n</div>\n<div>\n  <tls-grid-guides class=\"tls-grid-guides\"/>\n</div>\n<div class=\"debug noselect\">\n    <!-- {{ keycode }} -->\n</div>\n");
-$templateCache.put("components/global-navigation/global-navigation-directive.html","<div class=\"navigation-wrapper\">\n  <div class=\"navigation-header clickable\" ui-sref=\"home\">\n    <div class=\"navigation-center\">\n      TILES PROTOTYPE\n    </div>\n  </div>\n\n  <div class=\"navigation-option clickable\" ui-sref=\"login\" ng-if=\"!user\">\n    <div class=\"navigation-center\">\n      login\n    </div>\n  </div>\n    \n  <div class=\"navigation-option clickable\" ui-sref=\"join\" ng-if=\"!user\">\n    <div class=\"navigation-center\">\n      join\n    </div>\n  </div>\n\n  <div class=\"navigation-option clickable\" ui-sref=\"logout\" ng-if=\"user\">\n    <div class=\"navigation-center\">\n      logout\n    </div>\n  </div>\n  \n  <div class=\"navigation-option clickable\" ui-sref=\"selfStream\" ng-if=\"user ? (user.realm == \'member\') : false\">\n    <div class=\"navigation-center\">\n      {{ user.username }}\n    </div>\n  </div>\n\n  <div class=\"navigation-option clickable\" ui-sref=\"postNew\" ng-if=\"user ? (user.realm == \'member\') : false\">\n    <div class=\"navigation-center\">\n      NEW TILE\n    </div>\n  </div>\n</div>");
+angular.module("templates").run(["$templateCache", function($templateCache) {$templateCache.put("components/global-navigation/global-navigation-directive.html","<div class=\"navigation-wrapper\">\n  <div class=\"navigation-header clickable\" ui-sref=\"home\">\n    <div class=\"navigation-center\">\n      TILES PROTOTYPE\n    </div>\n  </div>\n\n  <div class=\"navigation-option clickable\" ui-sref=\"login\" ng-if=\"!user\">\n    <div class=\"navigation-center\">\n      login\n    </div>\n  </div>\n    \n  <div class=\"navigation-option clickable\" ui-sref=\"join\" ng-if=\"!user\">\n    <div class=\"navigation-center\">\n      join\n    </div>\n  </div>\n\n  <div class=\"navigation-option clickable\" ui-sref=\"logout\" ng-if=\"user\">\n    <div class=\"navigation-center\">\n      logout\n    </div>\n  </div>\n  \n  <div class=\"navigation-option clickable\" ui-sref=\"selfStream\" ng-if=\"user ? (user.realm == \'member\') : false\">\n    <div class=\"navigation-center\">\n      {{ user.username }}\n    </div>\n  </div>\n\n  <div class=\"navigation-option clickable\" ui-sref=\"postNew\" ng-if=\"user ? (user.realm == \'member\') : false\">\n    <div class=\"navigation-center\">\n      NEW TILE\n    </div>\n  </div>\n</div>");
 $templateCache.put("components/grid-guides/grid-guide-directive.html","<div class=\"grid-guide\" ng-class=\"orientation\">\n  &nbsp;\n</div>");
 $templateCache.put("components/grid-guides/grid-guides-directive.html","<div class=\"grid-guides-container\" ng-show=\"guidesShown\" tls-keypress-events=\"handleKeyPress(keyCode)\">\n  <tls-grid-guide ng-repeat=\"guide in guides.horizontalGuides\" orientation=\"guide.orientation\"/>\n</div>\n<div class=\"grid-guides-container\" ng-show=\"guidesShown\">\n  <tls-grid-guide ng-repeat=\"guide in guides.verticalGuides\" orientation=\"guide.orientation\"/>\n</div>\n<div class=\"grid-details\" ng-show=\"guidesShown\">\n  TILE SIZE: {{ tileSize }}<br/>\n  {{ guides.verticalGuides.length + 1 }} COLUMNS / {{ guides.horizontalGuides.length + 1 }} ROWS<br/>\n  MARGIN: {{ currentMargin }}\n</div>");
 $templateCache.put("components/notification/notification-directive.html","<div class=\"notification-wrapper\" tls-slidable=\"{animated: \'top\',shown: \'108px\',hidden: \'100%\',shownif:true}\" shown=\"notification\" ng-click=\"notification = null;\">\n  <div class=\"notification-center clickable\">\n    {{ notification.caption }}\n  </div>\n</div>");
@@ -73829,5 +73923,5 @@ $templateCache.put("module/post-new/post-new.html","<div class=\"post-new-wrappe
 $templateCache.put("module/stream/stream-slider-directive.html","<div class=\"stream-container\">\n  <div class=\"stream-container-slider\">\n    <tls-tile ng-repeat=\"tile in stream\" tile=\"tile\" index=\"$index\"/>\n  </div>\n</div>\n");
 $templateCache.put("module/stream/stream.html","STREAM");
 $templateCache.put("module/stream/tile-directive.html","<div class=\"tile-wrapper\" style=\"left: {{ tile.pX }}px; top: {{ tile.pY }}px;\" ng-class=\"\'w\' + tile.pWidth + \' h\' + tile.pHeight\">\n  <div class=\"tile-indicator\"></div>\n  <div class=\"tile-slider\" style=\"background-color:{{ tile.background }}; color: {{ tile.color }};\">\n    <div class=\"tile-text\">\n      {{ tile.caption }} \n    </div>\n    <img class=\"tile-image-loader\" ng-src=\"{{tile.imageURL}}\" tls-image-load=\"loaded()\" ng-if=\"tile.imageURL\"/>\n  </div>\n  <div class=\"tile-hit-area\" ng-mouseover=\'mouseover()\' ng-mouseout=\'mouseout()\' ng-click=\'click()\'></div>\n</div>");
-$templateCache.put("module/tile/tile-expanded-directive.html","<div class=\"tile-wrapper-expanded noselect\">\n  <div class=\"tile-image-wrapper-expanded\" style=\"background-color:{{ tile.background }}; color: {{ tile.color }};\" ng-click=\"click()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\">\n    <img class=\"tile-image-loader-expanded\" ng-src=\"{{tile.imageURL}}\" image-load=\"loaded()\" ng-if=\"tile.imageURL\" ng-click=\"click()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\"/>\n  </div>\n  <div class=\"tile-text-expanded\" ng-if=\"tile.caption\" style=\"background-color:{{ tile.background }}; color: {{ tile.color }};\" ng-click=\"click()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\">\n    {{ tile.caption }} \n  </div>\n  <div class=\"tile-footer-expanded\" style=\"background-color:{{ tile.background }}; color: {{ tile.color }};\">\n    <span class=\"tile-footer-stream-link clickable clickable-padded\" ng-click=\"clickStream()\">{{ streaminfo.streamName }}</span> -- posted this on {{ tile.created }}\n  </div>\n  <div class=\"tile-link-indicator\" ng-class=\"{\'hover\':linkHover, \'active\':linkActive }\">\n    <span class=\"glyphicon glyphicon-chevron-right\"></span><span class=\"glyphicon glyphicon-chevron-right\"></span>\n  </div>\n  <div class=\"tile-close-expanded clickable\" ng-click=\"clickClose()\" ng-show=\"hoverover\" ng-class=\"{\'closehover\':!tile.linkURL,\'closeactive\':((!tile.linkURL) && down)}\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\">\n    CLICK TO CLOSE <span class=\"glyphicon glyphicon-remove\"></span>\n  </div>\n</div>\n");
+$templateCache.put("module/tile/tile-expanded-directive.html","<div class=\"tile-info-measure-expanded\" style=\"color: {{ tile.color }};\">\n  <div class=\"tile-info-bottom\">\n    <div class=\"tile-link-indicator\" ng-if=\"tile.linkURL\">\n      <span class=\"glyphicon glyphicon-new-window\"></span>\n    </div>\n    <div class=\"tile-text-expanded\" ng-if=\"tile.caption\" >\n      {{ tile.caption }} \n    </div>\n    <div class=\"tile-footer-expanded\" style=\"color: {{ tile.color }};\">\n      <span class=\"tile-footer-stream-link clickable\">{{ streaminfo.streamName }}</span> -- posted this on {{ tile.created }}\n    </div>\n  </div>\n</div>\n<div class=\"tile-background-expanded\" style=\"background-color:{{ tile.background }};\" ng-click=\"clickClose()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\"></div>\n<div class=\"tile-slider-expanded\">\n  <div class=\"tile-image-wrapper-expanded noselect\" ng-click=\"clickClose()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\">\n    <img class=\"tile-image-loader-expanded\" ng-src=\"{{tile.imageURL}}\" tls-image-load=\"loaded()\" ng-if=\"tile.imageURL\" ng-click=\"clickClose()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\"/>\n  </div>\n  <div class=\"tile-info-expanded noselect\" style=\"color: {{ tile.color }};\">\n    <div class=\"tile-clicktrap-expanded\"  ng-click=\"clickClose()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\"></div>\n    <div class=\"tile-info-bottom\">\n      <div class=\"tile-link-indicator\" ng-if=\"tile.linkURL\" ng-class=\"{\'hover\':linkHover, \'active\':linkActive }\" ng-click=\"clickLink()\" ng-mouseover=\"linkover()\" ng-mouseout=\"linkout()\" ng-mousedown=\"linkdown()\" ng-mouseup=\"linkup()\">\n        <span class=\"glyphicon glyphicon-new-window\"></span>\n      </div>\n      <div class=\"tile-text-expanded\" ng-if=\"tile.caption\" ng-click=\"clickLink()\" ng-class=\"{\'hover\':linkHover, \'active\':linkActive, \'no-image-text\':!tile.imageURL }\" ng-mouseover=\"linkover()\" ng-mouseout=\"linkout()\" ng-mousedown=\"linkdown()\" ng-mouseup=\"linkup()\">\n        {{ tile.caption }} \n      </div>\n      <div class=\"tile-footer-expanded\" style=\"color: {{ tile.color }};\">\n        <span class=\"tile-footer-stream-link clickable\" ng-click=\"clickStream()\">{{ streaminfo.streamName }}</span> -- posted this on {{ tile.created }}\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"tile-close-expanded clickable\" ng-class=\"{\'closeactive\': down}\" ng-click=\"clickClose()\" ng-mouseover=\"mouseover()\" ng-mouseout=\"mouseout()\" ng-mousedown=\"mousedown()\" ng-mouseup=\"mouseup()\">\n  <span class=\"glyphicon glyphicon-chevron-right\"></span>\n</div>\n");
 $templateCache.put("module/tile/tile.html","<tls-tile-expanded class=\"tls-tile-expanded\" tile=\"currentTile\" streaminfo=\"tileStreamInfo\" previousstate=\"previousState\" previousstateparams=\"previousStateParams\" index=\"1\"/>");}]);
