@@ -1,38 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC>
 <html>
-<head>
-  <title>tiles prototype</title>
-  <meta content='width=device-width, initial-scale=.5, maximum-scale=.5, user-scalable=0' name='viewport' />
-
-  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css"/>
-  <link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.css"/>
-
-  <link rel="stylesheet" href="css/tiles.min.css"/>
-</head>
-<body ng-app="application" ng-init="streamRendered=[];currentUser=null;notification=null;currentTile={};">
-  <div ></div>
-  <div>
-    <tls-stream-slider class="tls-stream-slider noselect" stream="streamRendered" tilesize="tilesize" autoscroll="true" ng-controller="streamController as streamController"/>
-  </div>
-  <div>
-    <tls-global-navigation class="tls-global-navigation noselect" user="currentUser" ng-keypress="keycode = 'test'" ng-controller="globalNavigationController as globalNavigationController"/>
-  </div>
-  <div class="panel-view-wrapper" tls-slidable="{animated: 'left',shown: '0%',hidden: '100%',hideOn: ['home','memberStream','selfStream','']}">
-    <div class="panel-view">
-      <div ui-view="panel"></div>
-    </div>
-  </div>
-  <div>
-    <tls-notification class="tls-notification noselect" notification="notification"/>
-  </div>
-  <div>
-    <tls-grid-guides class="tls-grid-guides"/>
-  </div>
-  <div class="debug noselect">
-      <!-- {{ keycode }} -->
-  </div>
-
-  <!-- DISTRIBUTED -->
-  <script src="js/tiles.min.js"></script>
-</body>
+  <head>
+    <title>tiles prototype</title>
+    <meta content='width=device-width, initial-scale=.5, maximum-scale=.5, user-scalable=0' name='viewport'/>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="css/tiles.min.css"/>
+  </head>
+  <body ng-app="application" ng-init="streamRendered=[];currentUser=null;notification=null;currentTile={};">
+    <script src="js/tiles.min.js"></script>
+    <span ng-include="'components/global/application-ui.html'"/>
+  </body>
 </html>
