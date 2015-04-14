@@ -2,6 +2,4 @@
 application/bower_components
 build
 start
-application/.divshot-cache
-application/divshot.json
 node_modules
