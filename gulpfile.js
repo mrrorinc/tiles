@@ -2,13 +2,16 @@ var gulp = require('gulp');
 var rename = require('gulp-rename');
 var templateCache = require('gulp-angular-templatecache');
 var addStream = require('add-stream');
+var minifyHTML = require('gulp-minify-html');
+var connect = require('gulp-connect');
+var livereload = require('gulp-livereload');
 
 
 
 
 // CSS
 
-function compileCSS() {
+function concatenateCSS() {
   return gulp.src([
     'application/bower_components/angular-motion/dist/angular-motion.css',
 
@@ -18,25 +21,25 @@ function compileCSS() {
   ])
     .pipe(require('gulp-concat')('tiles.css'))
   // .pipe(require('gulp-autoprefixer')('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-  .pipe(gulp.dest('application/css'));
+  .pipe(gulp.dest('css'));
 }
 
 gulp.task('copy-bootstrap', function() {
   return gulp.src('application/bower_components/bootstrap/dist/**')
-    .pipe(gulp.dest('application/css/bootstrap'));
+    .pipe(gulp.dest('css/bootstrap'));
 });
 
-gulp.task('compile:css', ['copy-bootstrap'], function() {
-  return compileCSS();
+gulp.task('concat-css', ['copy-bootstrap'], function() {
+  return concatenateCSS();
 });
 
-gulp.task('dist:css', ['copy-bootstrap'], function() {
-  return compileCSS()
+gulp.task('build-css', ['copy-bootstrap'], function() {
+  return concatenateCSS()
     .pipe(rename({
       suffix: '.min'
     }))
     .pipe(require('gulp-minify-css')())
-    .pipe(gulp.dest('application/css'));
+    .pipe(gulp.dest('css'));
 });
 
 
@@ -73,23 +76,89 @@ function compileJavaScript() {
 function prepareTemplates() {
   return gulp
     .src([
-      'application/*/*/*.html'
+      'application/**/*.html',
+      'application/**/*.html'
     ])
-  // .pipe($.minifyHtml({empty: true}))
+  .pipe(minifyHTML({empty: true}))
   .pipe(templateCache());
 }
 
-gulp.task('compile:javascript', function() {
+gulp.task('concat-javascript', function() {
   return compileJavaScript()
-    .pipe(gulp.dest('application/js'));
+    .pipe(gulp.dest('js'));
 });
 
-gulp.task('dist:javascript', function() {
+gulp.task('build-javascript', function() {
   return compileJavaScript()
     .pipe(rename({
       suffix: '.min'
     }))
     .pipe(require('gulp-ngmin')()) // ngmin makes angular injection syntax compatible with uglify
   .pipe(require('gulp-uglify')())
-    .pipe(gulp.dest('application/js'));
+    .pipe(gulp.dest('js'));
 });
+
+
+
+
+
+// html
+
+gulp.task('html', function() {
+  return gulp.src(['index.html']).pipe(livereload());
+});
+
+
+
+
+// webserver, watch and build
+
+gulp.task('webserver', function() {
+  connect.server({
+    livereload: true
+  });
+});
+
+gulp.task('watch', function() {
+  // LiveReload
+  livereload.listen();
+
+  // Watch HTML and livereload
+  gulp.watch('index.html', ['html']);
+  gulp.watch([
+		'application/main.js',
+		'application/components/**/*.js',
+		'application/configuration/**/*.js',
+		'application/module/**/*.js',
+		'application/service/**/*.js'
+	], ['concat-javascript']);
+  gulp.watch([
+		'application/components/**/*.css',
+		'application/module/**/*.css',
+		'application/layout/**/*.css'
+	], ['concat-css']);
+});
+
+gulp.task('watch-build', function() {
+  // LiveReload
+  livereload.listen();
+
+  // Watch HTML and livereload
+  gulp.watch('index.html', ['html']);
+  gulp.watch([
+		'application/main.js',
+		'application/components/**/*.js',
+		'application/configuration/**/*.js',
+		'application/module/**/*.js',
+		'application/service/**/*.js'
+  ], ['build-javascript']);
+  gulp.watch([
+		'application/components/**/*.css',
+		'application/module/**/*.css',
+		'application/layout/**/*.css'
+	], ['build-css']);
+});
+
+gulp.task('start', ['concat-css', 'concat-javascript', 'webserver', 'watch']);
+gulp.task('build', ['build-css', 'build-javascript', 'webserver', 'watch-build']);
+gulp.task('default', ['start']);
