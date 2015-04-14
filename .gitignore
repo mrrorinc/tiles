@@ -1,7 +1,7 @@
-DS_Store
+.DS_Store
 application/bower_components
-css
-js
+build
+start
 application/.divshot-cache
 application/divshot.json
 node_modules
